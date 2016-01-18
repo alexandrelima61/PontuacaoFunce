@@ -1,0 +1,43 @@
+﻿.table_filha_cabecalho {
+    font-size: 12px !important;
+}
+
+.table_filha_item {
+    font-size: 11px !important;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 99;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.8;
+    min-height: 100%;
+    width: 100%;
+}
+
+.loading {
+    font-family: Arial;
+    font-size: 10pt;
+    width: 200px;
+    height: 100px;
+    display: none;
+    position: fixed;
+    background-color: White;
+    z-index: 999;
+    padding: 5px 5px;
+}
+
+.divCenter {
+    width: 500px; /* Tamanho da Largura da Div */
+    height: 200px; /* Tamanho da Altura da Div */
+    position: absolute;
+    top: 50%;
+    margin-top: -280px; /* ou seja ele pega 50% da altura tela e sobe metade do valor da altura no caso 100 */
+    left: 50%;
+    margin-left: -280px; /* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 280 */
+}
+
