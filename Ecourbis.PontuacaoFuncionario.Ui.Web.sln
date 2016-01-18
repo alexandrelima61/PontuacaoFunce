@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{07D64E2F-41B1-4D4B-96EB-8980822746C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{8B5E4458-30D5-4EEE-AC4F-72208E084956}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{31129373-8A22-4A6A-A2CD-D3AA090564C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ui", "Ui", "{AB0AFF3E-2841-4EE9-BFE6-7DF24309E692}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecourbis.PontuacaoFuncionario.Application", "Ecourbis.PontuacaoFuncionario.Application\Ecourbis.PontuacaoFuncionario.Application.csproj", "{1F03F7BC-D38E-4CD5-8A40-16A20AD0494E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecourbis.PontuacaoFuncionario.Domain", "Ecourbis.PontuacaoFuncionario.Domain\Ecourbis.PontuacaoFuncionario.Domain.csproj", "{1F4A10DB-A749-40A2-AB2A-CFCEEC871550}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecourbis.PontuacaoFuncionario.Repositories", "Ecourbis.PontuacaoFuncionario.Repositories\Ecourbis.PontuacaoFuncionario.Repositories.csproj", "{A6D114A6-17EB-4F06-843A-3B08236A993B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecourbis.PontuacaoFuncionario.Web", "Ecourbis.PontuacaoFuncionario.Web\Ecourbis.PontuacaoFuncionario.Web.csproj", "{CBF205DC-39A8-423B-9E45-3028BCF90080}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F03F7BC-D38E-4CD5-8A40-16A20AD0494E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F03F7BC-D38E-4CD5-8A40-16A20AD0494E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F03F7BC-D38E-4CD5-8A40-16A20AD0494E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F03F7BC-D38E-4CD5-8A40-16A20AD0494E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4A10DB-A749-40A2-AB2A-CFCEEC871550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4A10DB-A749-40A2-AB2A-CFCEEC871550}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4A10DB-A749-40A2-AB2A-CFCEEC871550}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4A10DB-A749-40A2-AB2A-CFCEEC871550}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D114A6-17EB-4F06-843A-3B08236A993B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D114A6-17EB-4F06-843A-3B08236A993B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D114A6-17EB-4F06-843A-3B08236A993B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D114A6-17EB-4F06-843A-3B08236A993B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF205DC-39A8-423B-9E45-3028BCF90080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF205DC-39A8-423B-9E45-3028BCF90080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF205DC-39A8-423B-9E45-3028BCF90080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF205DC-39A8-423B-9E45-3028BCF90080}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F03F7BC-D38E-4CD5-8A40-16A20AD0494E} = {07D64E2F-41B1-4D4B-96EB-8980822746C2}
+		{1F4A10DB-A749-40A2-AB2A-CFCEEC871550} = {8B5E4458-30D5-4EEE-AC4F-72208E084956}
+		{A6D114A6-17EB-4F06-843A-3B08236A993B} = {31129373-8A22-4A6A-A2CD-D3AA090564C8}
+		{CBF205DC-39A8-423B-9E45-3028BCF90080} = {AB0AFF3E-2841-4EE9-BFE6-7DF24309E692}
+	EndGlobalSection
+EndGlobal
