@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-sm-2 text-right">
                     <div class="form-group">
-                        <asp:Button Text="Gera Relatório" runat="server" ID="btnGrRel"
+                        <asp:Button Text="Atualiza Dados" runat="server" ID="btnGrRel"
                             OnClick="btnGrRel_Click" CssClass="btn btn-primary btn-lg" />
                     </div>
                 </div>

@@ -15,14 +15,15 @@ namespace Ecourbis.PontuacaoFuncionario.Web
         {
             if (!IsPostBack)
             {
-                string prdDe = Request.QueryString["p"];
+                string prdDe = Request.QueryString["pd"];
+                string prdAte = Request.QueryString["pa"];
                 string grp = Request.QueryString["g"];
                 if (!string.IsNullOrEmpty(prdDe))
-                    setDadosTela(prdDe, grp);
+                    setDadosTela(prdDe, prdAte, grp);
             }
         }
 
-        protected void setDadosTela(string prdDe, string grp)
+        protected void setDadosTela(string prdDe, string prdAte, string grp)
         {
 
             int numPai = 1;
@@ -31,7 +32,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
             Ub3AntBuss ub3ANT = Ub3AntBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss                
             string periodo = Utilitario.setDatePrd(prdDe);                              //cria e valoriza variavel de data padrao protheus
 
-            List<Ub3Sintetico> lstUb3Stc = ub3STC.getListUb3Stc(prdDe, grp);                 //carrega a lista de Ub3Sintetico
+            List<Ub3Sintetico> lstUb3Stc = ub3STC.getListUb3Stc(prdDe, prdAte, grp);    //carrega a lista de Ub3Sintetico
             List<Ub3Analitico> lstUb3Ant;                                               //carrega a lista de Ub3Analitico
 
             result.InnerHtml = htmlResult;                                              //limpa a div resultado
@@ -42,7 +43,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
                 foreach (var ub3s in lstUb3Stc)
                 {
                     htmlResult += Utilitario.setDadosTableStc(ub3s, numPai.ToString()); //set registro na tabela
-                    lstUb3Ant = ub3ANT.getDadosTableAnt(grp, prdDe);             //set os registros na lista Ub3Analitico
+                    lstUb3Ant = ub3ANT.getDadosTableAnt(grp, prdDe, prdAte);             //set os registros na lista Ub3Analitico
 
                     if (lstUb3Ant.Count > 0)
                     {

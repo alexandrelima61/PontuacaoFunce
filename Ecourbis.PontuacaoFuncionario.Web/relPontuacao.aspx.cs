@@ -11,13 +11,11 @@ namespace Ecourbis.PontuacaoFuncionario.Web
 {
     public partial class relPontuacao : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
+        protected void Page_Load(object sender, EventArgs e) { }
 
         protected void btnGrRel_Click(object sender, EventArgs e)
         {
+            //System.Threading.Thread.Sleep(1000);
             relatorio.InnerHtml = string.Empty;
             Ub3PeriodoBuss ub3PRD = Ub3PeriodoBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss            
             string fechamentoPonto = ub3PRD.getClosePonto();                                    //cria a variavel com o ultimo fechameto do ponto
