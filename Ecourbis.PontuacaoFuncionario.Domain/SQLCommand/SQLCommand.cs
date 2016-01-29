@@ -36,6 +36,11 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
         {
             sb = new StringBuilder();
             sb.Append("SELECT UA1.UA1_DESCRI AS UNIDADE, SRA.RA_CC AS CC, CTT.CTT_DESC01 AS DESC_CC, UB3_MAT  + ' - '+ SRA.RA_NOME AS UB3_MAT,\n");
+            if (isAtivo)            
+                sb.Append("UB3_DEMIS,\n");
+            else
+                sb.Append("CONVERT(VARCHAR,CAST(UB3_DEMIS AS datetime),103) as UB3_DEMIS,\n");
+
             sb.Append("CONVERT(VARCHAR,CAST(UB3_DEMIS AS datetime),103) as UB3_DEMIS,\n");
             sb.Append("SUM(UB3_ADVMES) AS UB3_ADVMES, SUM(UB3_SUSMES) AS UB3_SUSMES, SUM(UB3_ATMES) AS UB3_ATMES, SUM(UB3_FALMES) AS UB3_FALMES, SUM(UB3_REEMES) AS UB3_REEMES,\n");
             sb.Append("SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES) AS UB3_TOTAL\n");

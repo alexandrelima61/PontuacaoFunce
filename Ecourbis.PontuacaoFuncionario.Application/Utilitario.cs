@@ -175,6 +175,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                        <th>FALTA</th>\n");
             html.Append("                        <th>REEMBOLSO</th>\n");
             html.Append("                        <th>TOTAL</th>\n");
+            html.Append("                        <th></th>\n");
             html.Append("                    </tr>\n");
             html.Append("                 </thead>");
 
@@ -231,6 +232,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                        <td class='text-right'>" + ub3a.UB3_FALMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_REEMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_TOTAL + "</td>\n");
+            html.Append("                        <td class='text-right'><a href='#' class='btn btn-link  link-painel'><img src='img/print.png' style='width:15px; height:15px;'/></a></td>\n");
             html.Append("                    </tr>\n");
 
             return html.ToString();

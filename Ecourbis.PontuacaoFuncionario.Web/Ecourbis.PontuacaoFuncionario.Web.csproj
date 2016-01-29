@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -99,6 +100,7 @@
     <Content Include="Erros\Erro404.aspx" />
     <Content Include="Erros\ErroGenerico.aspx" />
     <Content Include="Erros\Imagens\erro.png" />
+    <Content Include="img\print.png" />
     <Content Include="img\calendar.png" />
     <Content Include="img\collapse.png" />
     <Content Include="img\ecourbis_Branco_Transp.png" />
