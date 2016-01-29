@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ub3AntRepository.cs" />
+    <Compile Include="Ub3DetalhesRepository.cs" />
     <Compile Include="Ub3PrdRepository.cs" />
     <Compile Include="Ub3StcRepository.cs" />
   </ItemGroup>

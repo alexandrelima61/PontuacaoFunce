@@ -66,7 +66,6 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
             _Context.FechaConexao();
             return lstUb3StcPrd;
         }
-
-
+        
     }
 }

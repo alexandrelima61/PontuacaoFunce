@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
@@ -36,7 +37,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
         {
             sb = new StringBuilder();
             sb.Append("SELECT UA1.UA1_DESCRI AS UNIDADE, SRA.RA_CC AS CC, CTT.CTT_DESC01 AS DESC_CC, UB3_MAT  + ' - '+ SRA.RA_NOME AS UB3_MAT,\n");
-            if (isAtivo)            
+            if (isAtivo)
                 sb.Append("UB3_DEMIS,\n");
             else
                 sb.Append("CONVERT(VARCHAR,CAST(UB3_DEMIS AS datetime),103) as UB3_DEMIS,\n");
@@ -66,7 +67,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             return "SELECT convert(varchar,cast(MAX(PO_DATAFIM) AS datetime),103) AS DATA FROM SPO010";
         }
 
-        public static string getQryPrdClose(bool isAtivo,List<string> anomes)
+        public static string getQryPrdClose(bool isAtivo, List<string> anomes)
         {
             sb = new StringBuilder();
             sb.Append("SELECT UA1_GRUPO, UA1_DESCRI,\n");
@@ -97,7 +98,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             sb.Append("	INNER JOIN CTT010 CTT ON SRA.RA_CC = CTT.CTT_CUSTO AND CTT.D_E_L_E_T_ = ''\n");
             sb.Append("	INNER JOIN UA1010 UA1 ON SRA.RA_CC = UA1.UA1_CCUSTO AND UA1.D_E_L_E_T_ = ''\n");
             sb.Append("	WHERE UB3.D_E_L_E_T_ = ''\n");
-            if(isAtivo)
+            if (isAtivo)
                 sb.Append("	AND UB3_SITFOL <> 'D'\n");
             else
                 sb.Append("	AND UB3_SITFOL = 'D'\n");
@@ -106,6 +107,41 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             sb.Append(") AS QD1\n");
             sb.Append("GROUP BY UA1_GRUPO, UA1_DESCRI \n");
             sb.Append("ORDER BY UA1_GRUPO, UA1_DESCRI\n");
+            return sb.ToString();
+        }
+
+        public static string getDadosFunce(string matricula)
+        {
+            sb = new StringBuilder();
+            sb.Append("SELECT\n");
+            sb.Append("    RA_MAT AS MAT,\n");
+            sb.Append("    RA_NOME AS NOME,\n");
+            sb.Append("    RA_CC AS CC,\n");
+            sb.Append("    CONVERT(varchar, CAST(RA_ADMISSA AS datetime), 103) AS ADMISSAO,\n");
+            sb.Append("    CONVERT(varchar, CAST(RA_DEMISSA AS datetime), 103) AS DEMISSAO\n");
+            sb.Append("FROM SRA010\n");
+            sb.Append("WHERE RA_MAT = '" + matricula + "'\n");
+            sb.Append("AND D_E_L_E_T_ = ' '\n");
+
+            return sb.ToString();
+        }
+
+        public static string getDetalhesFunce(string matricula)
+        {
+            sb = new StringBuilder();
+            sb.Append("SELECT\n");
+            sb.Append("    SUBSTRING(UB3_DTARQ, 5, 2) + '/' + SUBSTRING(UB3_DTARQ, 1, 4) AS MESANO,\n");
+            sb.Append("    UB3_ADVMES,\n");
+            sb.Append("    UB3_SUSMES,\n");
+            sb.Append("    UB3_ATMES,\n");
+            sb.Append("    UB3_FALMES,\n");
+            sb.Append("    UB3_REEMES,\n");
+            sb.Append("    (UB3_ADVMES + UB3_SUSMES + UB3_ATMES + UB3_FALMES + UB3_REEMES) AS UB3_TOTAL\n");
+            sb.Append("FROM UB3010\n");
+            sb.Append("WHERE UB3_FILIAL = '  '\n");
+            sb.Append("AND UB3_MAT = '" + matricula + "'\n");
+            sb.Append("AND D_E_L_E_T_ = ' '\n");
+
             return sb.ToString();
         }
 

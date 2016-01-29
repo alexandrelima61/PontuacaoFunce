@@ -40,3 +40,52 @@
     left: 50%;
     margin-left: -280px; /* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 280 */
 }
+
+.alert {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.panel-default {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.panel-body {
+    text-align: left !important;
+    padding-left: 0 !important;
+}
+
+.required > .control-label:after {
+    content: "*" !important;
+}
+
+.titulo-painel {
+    float: left !important;
+    padding-top: 2px !important;
+}
+
+.link-painel {
+    float: right !important;
+    padding: 0 !important;
+}
+
+.navbar-brand {
+    padding-top: 12px !important;
+}
+
+.intervalo-valores {
+    margin: 0 15px !important;
+}
+
+.descricao {
+    white-space: pre !important;
+}
+
+.control-label-meio {
+    margin: 5px !important;
+}
+
+.tabela-resultado {
+    margin: 15px !important;
+}

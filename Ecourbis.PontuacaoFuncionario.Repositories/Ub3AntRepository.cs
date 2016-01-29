@@ -72,7 +72,7 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
                     lstUb3AntPrd.Add(ub3a);
                 }
             }
-            catch (Exception e) { }
+            catch (Exception) { }
 
             _Context.FechaConexao();
             return lstUb3AntPrd;

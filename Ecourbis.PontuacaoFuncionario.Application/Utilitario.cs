@@ -84,6 +84,91 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return (data.Substring(4, 2) + "/" + data.Substring(0, 4));
         }
 
+        /**Dados Funcionário**/
+        public static string setHeaderDdFunce()
+        {
+            html = new StringBuilder();
+
+            html.Append("           <table class='table table-responsive' style='width:100%;'>\n");
+            html.Append("                <tr>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>MAT</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>NOME</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>C.CUSTO</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>DT.ADMISSÃO</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>DT.DEMISSÃO</th>\n");
+            html.Append("                </tr>\n");
+
+            return html.ToString();
+        }
+
+        public static string setDadosDdFunce(DataRowView item)
+        {
+            html = new StringBuilder();
+            html.Append("                <tr>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[0] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[1] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[2] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[3] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[4] + "</td>\n");
+            html.Append("                </tr>\n");
+
+            return html.ToString();
+        }
+
+        public static string setFooterDdFunce()
+        {
+            html = new StringBuilder();
+
+            html.Append("           </table>\n");
+            html.Append("           <br /><br />\n");
+
+            return html.ToString();
+        }
+
+        /**Detalhes Funcionário**/
+        public static string setHeaderDetFunce()
+        {
+            html = new StringBuilder();
+
+            html.Append("           <table class='table table-responsive' style='width:100%;'>\n");
+            html.Append("                <tr>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>MES/ANO</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>ADVERT.</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>SUSP.</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>ATEST.</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>FALTA</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>REEMB.</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>TOTAL</th>\n");
+            html.Append("                </tr>\n");
+
+            return html.ToString();
+        }
+
+        public static string setDadosDetFunce(DataRowView item)
+        {
+            html = new StringBuilder();
+            html.Append("                <tr>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[0] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[1] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[2] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[3] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[4] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[5] + "</td>\n");
+            html.Append("                   <td class='table_filha_item'>" + item[6] + "</td>\n");
+            html.Append("                </tr>\n");
+
+            return html.ToString();
+        }
+
+        public static string setFooterDetFunce()
+        {
+            html = new StringBuilder();
+
+            html.Append("           </table>\n");
+
+            return html.ToString();
+        }
+
         /**Sintetico**/
         /// <summary>
         /// Method responsável por seta o inicio da tabela sintetica
@@ -181,7 +266,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
 
             return html.ToString();
         }
-                
+
         /// <summary>
         /// Method responsável por fecha a tabela analitica de exibição na tela do usuário.
         /// </summary>
@@ -232,7 +317,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                        <td class='text-right'>" + ub3a.UB3_FALMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_REEMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_TOTAL + "</td>\n");
-            html.Append("                        <td class='text-right'><a href='#' class='btn btn-link  link-painel'><img src='img/print.png' style='width:15px; height:15px;'/></a></td>\n");
+            html.Append("                        <td class='text-right'><a href='DetalhesFunce.aspx?mat="+ ub3a.UB3_MAT.Substring(0, 6) + "' class='btn btn-link  link-painel' target='_blank'><img src='img/print.png' style='width:15px; height:15px;'/></a></td>\n");
             html.Append("                    </tr>\n");
 
             return html.ToString();
@@ -241,7 +326,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         //primeiro relatório 
         public static string setHeadeDadosPRDClose(List<string> anomes)
         {
-            html = new StringBuilder();            
+            html = new StringBuilder();
             html.Append("            <table class='table table-responsive config-table'>\n");
             html.Append("                <tr>\n");
             html.Append("                    <td><b>GRUPO</b></td>\n");
@@ -266,25 +351,25 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         public static string setFootDadosPRDClose(List<string> anomes)
         {
             html = new StringBuilder();
-           /* html.Append("               <tfoot>\n");
-            html.Append("                   <tr>\n");
-            html.Append("                       <td><b>GRUPO</b></td>\n");
-            html.Append("                       <td><b>DESCRIÇÃO</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[0]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[1]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[2]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[3]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[4]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[5]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[6]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[7]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[8]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[9]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[10]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[11]).Replace("[", "").Replace("]", "") + "</b></td>\n");
-            html.Append("                       <td class='text-right'><b>TOTAL</b></td>\n");
-            html.Append("                   </tr>\n");
-            html.Append("               </tfoot>\n");*/
+            /* html.Append("               <tfoot>\n");
+             html.Append("                   <tr>\n");
+             html.Append("                       <td><b>GRUPO</b></td>\n");
+             html.Append("                       <td><b>DESCRIÇÃO</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[0]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[1]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[2]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[3]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[4]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[5]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[6]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[7]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[8]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[9]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[10]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[11]).Replace("[", "").Replace("]", "") + "</b></td>\n");
+             html.Append("                       <td class='text-right'><b>TOTAL</b></td>\n");
+             html.Append("                   </tr>\n");
+             html.Append("               </tfoot>\n");*/
             html.Append("            </table>\n");
             html.Append("       </div>");
             html.Append("       <br />");
@@ -293,7 +378,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return html.ToString();
         }
 
-        public static string setItensPRDClose(DataRowView item, List<string> anomes,bool isAtivo)
+        public static string setItensPRDClose(DataRowView item, List<string> anomes, bool isAtivo)
         {
             html = new StringBuilder();
 

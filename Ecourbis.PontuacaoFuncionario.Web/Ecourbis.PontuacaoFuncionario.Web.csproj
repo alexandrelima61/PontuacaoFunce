@@ -97,6 +97,7 @@
     <Content Include="css\jquery.treegrid.css" />
     <Content Include="Config\datepicker\css\datepicker.css" />
     <Content Include="Config\datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="DetalhesFunce.aspx" />
     <Content Include="Erros\Erro404.aspx" />
     <Content Include="Erros\ErroGenerico.aspx" />
     <Content Include="Erros\Imagens\erro.png" />
@@ -149,6 +150,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalhesFunce.aspx.cs">
+      <DependentUpon>DetalhesFunce.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalhesFunce.aspx.designer.cs">
+      <DependentUpon>DetalhesFunce.aspx</DependentUpon>
     </Compile>
     <Compile Include="Erros\Erro404.aspx.cs">
       <DependentUpon>Erro404.aspx</DependentUpon>

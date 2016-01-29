@@ -5,21 +5,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid" style="margin-top: 80px; padding: 0 3px;">
         <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-sm-10 text-center">
-                    <div class="alert alert-info text-center" runat="server" id="div1">
-                        <strong>Relatório de Pontuação Funcionário</strong>
-                    </div>                    
-                </div>
-                <div class="col-sm-2 text-right">
-                    <div class="form-group">
+            <div class="panel-heading">
+                <div class="clearfix">
+                    <div class="col-sm-10">
+                        <strong class="panel-title titulo-painel">Relatório de Pontuação Funcionário</strong>
+                    </div>
+                    <div class="col-sm-2 text-right">
                         <asp:Button Text="Atualizar Dados" runat="server" ID="btnGrRel"
-                            OnClick="btnGrRel_Click" CssClass="btn btn-primary btn-lg" />
+                            OnClick="btnGrRel_Click" CssClass="btn btn-link link" />
                     </div>
                 </div>
-            </div>             
-
-            <div id="relatorio" runat="server" style="padding: 15px 15px;"></div>
+            </div>
+            <div class="panel-body">
+                <div id="relatorio" runat="server" style="padding: 15px 15px;"></div>
+            </div>
         </div>
     </div>
+
 </asp:Content>
