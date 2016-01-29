@@ -27,13 +27,13 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
             return instance;
         }
 
-        public List<Ub3Sintetico> getListUb3Sintetico(string perido, string grupo)
+        public List<Ub3Sintetico> getListUb3Sintetico(bool isAtivo, string prdDe, string prdAte, string grupo)
         {
             List<Ub3Sintetico> lstUb3StcPrd = new List<Ub3Sintetico>();
             _Context = new Connection(this.ConnectionString);
             _Context.AbrirConexao();
 
-            qryConsulta = SQLCommand.getQryUb3Sintetico(perido, grupo);
+            qryConsulta = SQLCommand.getQryUb3Sintetico(isAtivo, prdDe, prdAte, grupo);
 
             try
             {

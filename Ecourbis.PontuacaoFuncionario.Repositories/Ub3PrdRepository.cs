@@ -46,7 +46,7 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
             return fechamentoPonto;
         }
 
-        public DataView getDadosPrd(List<string> anomes)
+        public DataView getDadosPrd(bool isAtivo,List<string> anomes)
         {
             DataView dv = new DataView();
             DataSet ds = new DataSet();
@@ -55,7 +55,7 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
             {
                 try
                 {
-                    qryConsulta = SQLCommand.getQryPrdClose(anomes);
+                    qryConsulta = SQLCommand.getQryPrdClose(isAtivo, anomes);
                     conn.ConnectionString = ConnectionString;
                     conn.Open();
 

@@ -21,10 +21,10 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return instance;
         }
 
-        public List<Ub3Analitico> getDadosTableAnt(string grupo, string periodo)
+        public List<Ub3Analitico> getDadosTableAnt(bool isAtivo, string grupo, string prdDE, string prdATE)
         {
             ub3ANTRepo = Ub3AntRepository.getNewInstance();
-            return ub3ANTRepo.getListUb3Analitico(grupo, periodo);
+            return ub3ANTRepo.getListUb3Analitico(isAtivo, grupo, prdDE, prdATE);
         }
     }
 }

@@ -46,6 +46,22 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return usName.Replace(@"ECOURBIS\", "").ToLower();
         }
 
+        public static string setTitulo(bool isfuncAtivos)
+        {
+            html = new StringBuilder();
+            if (isfuncAtivos)
+            {
+                html.Append("       <div class='container'>");
+                html.Append("           <h3>FUNCIONÁRIOS ATIVOS</h3>");
+            }
+            else
+            {
+                html.Append("       <div class='container'>");
+                html.Append("           <h3>FUNCIONÁRIOS DEMITIDOS</h3>");
+            }
+            return html.ToString();
+        }
+
         /// <summary>
         /// Captura o ip da maquina do usuário corrente
         /// </summary>
@@ -99,7 +115,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         {
             html = new StringBuilder();
 
-            html.Append("               <tfoot>\n");
+            /*html.Append("               <tfoot>\n");
             html.Append("                    <tr>\n");
             html.Append("                        <td><b>DESCRIÇÃO</b></td>\n");
             html.Append("                        <td class='text-right'><b>ADVERTENCIA</b></td>\n");
@@ -109,7 +125,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                        <td class='text-right'><b>REEMBOLSO</b></td>\n");
             html.Append("                        <td class='text-right'><b>TOTAL</b></td>\n");
             html.Append("                    </tr>\n");
-            html.Append("               </tfoot>\n");
+            html.Append("               </tfoot>\n");*/
             html.Append("            </table>\n");
 
             return html.ToString();
@@ -173,7 +189,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         {
             html = new StringBuilder();
 
-            html.Append("               <tfoot>\n");
+            /*html.Append("               <tfoot>\n");
             html.Append("                    <tr class='table_filha_cabecalho'>\n");
             html.Append("                        <th>CC</th>\n");
             html.Append("                        <th>DESCRIÇÃO</th>\n");
@@ -186,7 +202,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                        <th>REEMBOLSO</th>\n");
             html.Append("                        <th>TOTAL</th>\n");
             html.Append("                    </tr>\n");
-            html.Append("               </tfoot>\n");
+            html.Append("               </tfoot>\n");*/
 
             html.Append("            </table>\n");
             html.Append("       <td>\n");
@@ -223,8 +239,8 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         //primeiro relatório 
         public static string setHeadeDadosPRDClose(List<string> anomes)
         {
-            html = new StringBuilder();
-            html.Append("            <table class='table table-responsive'>\n");
+            html = new StringBuilder();            
+            html.Append("            <table class='table table-responsive config-table'>\n");
             html.Append("                <tr>\n");
             html.Append("                    <td><b>GRUPO</b></td>\n");
             html.Append("                    <td><b>DESCRIÇÃO</b></td>\n");
@@ -248,7 +264,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         public static string setFootDadosPRDClose(List<string> anomes)
         {
             html = new StringBuilder();
-            html.Append("               <tfoot>\n");
+           /* html.Append("               <tfoot>\n");
             html.Append("                   <tr>\n");
             html.Append("                       <td><b>GRUPO</b></td>\n");
             html.Append("                       <td><b>DESCRIÇÃO</b></td>\n");
@@ -266,32 +282,35 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                       <td class='text-right'><b>" + SQLCommand.getM(anomes[11]).Replace("[", "").Replace("]", "") + "</b></td>\n");
             html.Append("                       <td class='text-right'><b>TOTAL</b></td>\n");
             html.Append("                   </tr>\n");
-            html.Append("               </tfoot>\n");
+            html.Append("               </tfoot>\n");*/
             html.Append("            </table>\n");
+            html.Append("       </div>");
+            html.Append("       <br />");
+            html.Append("       <br />");
 
             return html.ToString();
         }
 
-        public static string setItensPRDClose(DataRowView item, List<string> anomes)
+        public static string setItensPRDClose(DataRowView item, List<string> anomes,bool isAtivo)
         {
             html = new StringBuilder();
 
             html.Append("                   <tr>\n");
             html.Append("                       <td>" + item[0] + "</td>\n");
             html.Append("                       <td>" + item[1] + "</td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[0] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[2] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[1] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[3] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[2] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[4] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[3] + "&g=" + item[0] + "' class='alert-link fancybox ' data-fancybox-type='iframe'>" + item[5] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[4] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[6] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[5] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[7] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[6] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[8] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[7] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[9] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[8] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[10] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[9] + "&g=" + item[0] + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[11] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[10] + "&g=" + item[0] + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[12] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?p=" + anomes[11] + "&g=" + item[0] + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[13] + "</a></td>\n");
-            html.Append("                       <td class='text-right'>" + item[14] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[0] + "&pa=" + anomes[0] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[2] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[1] + "&pa=" + anomes[1] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[3] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[2] + "&pa=" + anomes[2] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[4] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[3] + "&pa=" + anomes[3] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox ' data-fancybox-type='iframe'>" + item[5] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[4] + "&pa=" + anomes[4] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[6] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[5] + "&pa=" + anomes[5] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[7] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[6] + "&pa=" + anomes[6] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[8] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[7] + "&pa=" + anomes[7] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[9] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[8] + "&pa=" + anomes[8] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[10] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[9] + "&pa=" + anomes[9] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[11] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[10] + "&pa=" + anomes[10] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[12] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[11] + "&pa=" + anomes[11] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[13] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[0] + "&pa=" + anomes[11] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[14] + "</a></td>\n");
             html.Append("                   </tr>\n");
 
             return html.ToString();

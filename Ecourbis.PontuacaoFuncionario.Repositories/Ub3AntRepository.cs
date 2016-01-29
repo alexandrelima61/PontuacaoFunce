@@ -27,15 +27,15 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
         /// Method responsável por cria lista referente ao ano/mes correspondente a consulta, por grupo, deforma analitica.
         /// </summary>
         /// <param name="grupo"></param>
-        /// <param name="periodo"></param>
+        /// <param name="prdDe"></param>
         /// <returns></returns>
-        public List<Ub3Analitico> getListUb3Analitico(string grupo, string periodo)
+        public List<Ub3Analitico> getListUb3Analitico(bool isAtivo, string grupo, string prdDe, string prdAte)
         {
             List<Ub3Analitico> lstUb3AntPrd = new List<Ub3Analitico>();
             _Context = new Connection(this.ConnectionString);
             _Context.AbrirConexao();
             qryConsulta = string.Empty;
-            qryConsulta = SQLCommand.getQryUb3Analitico(periodo, grupo);
+            qryConsulta = SQLCommand.getQryUb3Analitico(isAtivo, prdDe, prdAte, grupo);
 
             try
             {

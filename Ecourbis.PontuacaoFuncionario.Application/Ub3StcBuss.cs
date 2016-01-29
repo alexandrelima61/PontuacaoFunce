@@ -21,10 +21,10 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return instance;
         }
 
-        public List<Ub3Sintetico> getListUb3Stc(string perido, string grupo)
+        public List<Ub3Sintetico> getListUb3Stc(bool isAtivo, string prdDE, string prdATE, string grupo)
         {
             ub3STCRepo = Ub3StcRepository.getNewInstance();
-            return ub3STCRepo.getListUb3Sintetico(perido, grupo);
+            return ub3STCRepo.getListUb3Sintetico(isAtivo, prdDE, prdATE, grupo);
         }
     }
 }

@@ -18,21 +18,23 @@ namespace Ecourbis.PontuacaoFuncionario.Web
                 string prdDe = Request.QueryString["pd"];
                 string prdAte = Request.QueryString["pa"];
                 string grp = Request.QueryString["g"];
+                bool isAtivo = Boolean.Parse(Request.QueryString["atv"]);
                 if (!string.IsNullOrEmpty(prdDe))
-                    setDadosTela(prdDe, prdAte, grp);
+                    setDadosTela(isAtivo,prdDe, prdAte, grp);
             }
         }
 
-        protected void setDadosTela(string prdDe, string prdAte, string grp)
+        protected void setDadosTela(bool isAtivo, string prdDe, string prdAte, string grp)
         {
 
             int numPai = 1;
             string htmlResult = string.Empty;                                           //html da tablea
             Ub3StcBuss ub3STC = Ub3StcBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss
             Ub3AntBuss ub3ANT = Ub3AntBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss                
-            string periodo = Utilitario.setDatePrd(prdDe);                              //cria e valoriza variavel de data padrao protheus
+            string prdde = Utilitario.setDatePrd(prdDe);                                //cria e valoriza variavel de data padrao protheus
+            string prdate = Utilitario.setDatePrd(prdAte);                                //cria e valoriza variavel de data padrao protheus
 
-            List<Ub3Sintetico> lstUb3Stc = ub3STC.getListUb3Stc(prdDe, prdAte, grp);    //carrega a lista de Ub3Sintetico
+            List<Ub3Sintetico> lstUb3Stc = ub3STC.getListUb3Stc(isAtivo,prdDe, prdAte, grp);    //carrega a lista de Ub3Sintetico
             List<Ub3Analitico> lstUb3Ant;                                               //carrega a lista de Ub3Analitico
 
             result.InnerHtml = htmlResult;                                              //limpa a div resultado
@@ -43,7 +45,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
                 foreach (var ub3s in lstUb3Stc)
                 {
                     htmlResult += Utilitario.setDadosTableStc(ub3s, numPai.ToString()); //set registro na tabela
-                    lstUb3Ant = ub3ANT.getDadosTableAnt(grp, prdDe, prdAte);             //set os registros na lista Ub3Analitico
+                    lstUb3Ant = ub3ANT.getDadosTableAnt(isAtivo,grp, prdDe, prdAte);             //set os registros na lista Ub3Analitico
 
                     if (lstUb3Ant.Count > 0)
                     {
@@ -63,7 +65,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
                 htmlResult += Utilitario.setEndTable();                                 //valoriza fechamento da tabela 
 
                 result.InnerHtml += htmlResult;                                         //set registro na tela
-                lblRel.Text += periodo;
+                lblRel.Text += "de " + prdde + " ate " + prdate;
 
             }
         }
