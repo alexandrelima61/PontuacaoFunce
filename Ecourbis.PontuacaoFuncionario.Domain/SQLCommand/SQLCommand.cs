@@ -58,6 +58,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
 
             sb.Append("AND UB3_DTARQ BETWEEN '" + prdDe + "' AND '" + prdAte + "'\n");
             sb.Append("GROUP BY UA1.UA1_DESCRI, SRA.RA_CC, CTT.CTT_DESC01, UB3.UB3_MAT, SRA.RA_NOME,UB3_DEMIS\n");
+            sb.Append("HAVING SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES) > 0");
 
             return sb.ToString();
         }
