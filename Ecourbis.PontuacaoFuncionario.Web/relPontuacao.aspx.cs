@@ -2,17 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Ecourbis.PontuacaoFuncionario.Web
 {
     public partial class relPontuacao : System.Web.UI.Page
     {
+        private string __User;
+        private string[] isAuthorizer;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            __User = Utilitario.GetUser();
+            isAuthorizer = Utilitario.GetAuthorize(__User);
+            btnGrRel.Enabled = "OK".Equals(isAuthorizer[1]);
+
+
         }
 
         protected void btnGrRel_Click(object sender, EventArgs e)
@@ -31,7 +35,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
         private void setDadosFuncAtivos(List<string> anomes)
         {
             Ub3PeriodoBuss ub3PRD = Ub3PeriodoBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss            
-            DataView dvUltPrdClose = ub3PRD.getDtvPrdClose(true, anomes);
+            DataView dvUltPrdClose = ub3PRD.getDtvPrdClose(isAuthorizer[0], true, anomes);
             string htmlPage = string.Empty;
 
             if (dvUltPrdClose.Count > 0)
@@ -54,7 +58,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
         private void setDadosFuncDemit(List<string> anomes)
         {
             Ub3PeriodoBuss ub3PRD = Ub3PeriodoBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss            
-            DataView dvUltPrdClose = ub3PRD.getDtvPrdClose(false, anomes);
+            DataView dvUltPrdClose = ub3PRD.getDtvPrdClose(isAuthorizer[0], false, anomes);
             string htmlPage = string.Empty;
 
             if (dvUltPrdClose.Count > 0)

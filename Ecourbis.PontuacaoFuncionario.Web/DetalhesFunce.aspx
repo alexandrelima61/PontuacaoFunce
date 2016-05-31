@@ -37,20 +37,11 @@
     </form>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript">
-        /*** Imprimir a página ao carregar a página*/
-        // Versão jQuery
-        if (jQuery) {
-            jQuery(
-                function () { if (typeof (window.print) != 'undefined') { window.print(); } }
-            );
-            // Versão convencional
-        } else {
-            window.onload = function () {
-                if (typeof (window.print) != 'undefined') {
-                    //window.print();
-                }
-            }
-        }
+        /*** Imprimir a página ao carregar a página*/        
+        if (jQuery)// Versão jQuery
+            jQuery(function () { if (typeof (window.print) != 'undefined') { window.print(); } });            
+        else// Versão convencional
+            window.onload = function () {if (typeof (window.print) != 'undefined') {/*window.print();*/} }        
     </script>
 </body>
 </html>

@@ -46,7 +46,7 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
             return fechamentoPonto;
         }
 
-        public DataView getDadosPrd(bool isAtivo,List<string> anomes)
+        public DataView getDadosPrd(string grupo, bool isAtivo, List<string> anomes)
         {
             DataView dv = new DataView();
             DataSet ds = new DataSet();
@@ -55,11 +55,11 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
             {
                 try
                 {
-                    qryConsulta = SQLCommand.getQryPrdClose(isAtivo, anomes);
+                    qryConsulta = SQLCommand.getQryPrdClose(grupo, isAtivo, anomes);
                     conn.ConnectionString = ConnectionString;
                     conn.Open();
 
-                    using (var da = new SqlDataAdapter(qryConsulta,conn))
+                    using (var da = new SqlDataAdapter(qryConsulta, conn))
                     {
                         da.Fill(ds);
                         dv = new DataView(ds.Tables[0]);

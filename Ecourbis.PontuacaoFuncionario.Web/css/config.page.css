@@ -6,6 +6,10 @@
     font-size: 11px !important;
 }
 
+.text-right {
+    text-align: right !important;
+}
+
 .modal {
     position: fixed;
     top: 0;

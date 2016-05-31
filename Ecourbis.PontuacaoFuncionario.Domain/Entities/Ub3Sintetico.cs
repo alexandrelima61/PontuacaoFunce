@@ -16,6 +16,8 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.Entities
         public Nullable<double> UB3_ATMES { get; set; }
         public Nullable<double> UB3_FALMES { get; set; }
         public Nullable<double> UB3_REEMES { get; set; }
+        public Nullable<double> UB3_MULTAS { get; set; }
+        public Nullable<double> UB3_ACID { get; set; }
         public Nullable<double> UB3_TOTAL { get; set; }
     }
 }

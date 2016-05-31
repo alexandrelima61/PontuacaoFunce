@@ -12,6 +12,47 @@ namespace Ecourbis.PontuacaoFuncionario.Application
     {
         private static StringBuilder html;
 
+        public static string[] GetAuthorize(string __User)
+        {
+            string[] userAuthor = new string[2];
+            switch (__User)
+            {
+                case "curien": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //CESAR ROBERTO URIEN
+                case "fcasagrande": userAuthor[0] = "'007','008','010'"; userAuthor[1] = "OK"; break;   //FERNANDO CASAGRANDE
+                case "wfreitas": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //WALTER GOMES DE FREITAS
+
+                //Operação Sul
+                case "olopes": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                    //OLSEN LOPES DA SILVA JUNIOR
+                case "aargolo": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //ALTAIR LUCIO ARGOLO
+                case "jdias": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                     //JOAO BITENCOURT DIAS
+                case "vchaves": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //VALDIR PEREIRA CHAVES
+
+                //Operação Leste
+                case "eperes": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //EVANILSON DE SOUZA PERES
+                case "jpinto": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //JONATAS ALVES PINTO
+                case "jfesta": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //JOCINEI SERGIO FESTA
+                case "caguiar": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                   //CARLOS EMIDIO R DE AGUIAR
+
+                case "npassoni": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //NANCI TAKAHASHI PASSONI
+                case "rjulio": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //REGINA CELIA JULIO
+                case "cmoreira": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //CELSO MOREIRA DOS SANTOS
+                case "llanzarini": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                     //LUIS CARLOS TRAPP LANZARINI
+                case "daragon": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //DOUGLAS DE MATOS ARAGON
+                case "jalima": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //T.I.
+                case "fcoelho": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //T.I.
+                case "bsilva": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //T.I.
+                default: break;
+            }
+
+            if (userAuthor[0] == null)
+            {
+                userAuthor[0] = "";
+                userAuthor[1] = "";
+            }
+
+            return userAuthor;
+        }
+
         /// <summary>
         /// Retorna a relação dos ultimos 12 meses para criação da chave de pesquisa no sql.
         /// </summary>
@@ -32,6 +73,22 @@ namespace Ecourbis.PontuacaoFuncionario.Application
 
             return anomes;
         }
+
+        //Totalizador
+        public static Totalizador setTotalizador(DataRowView item, Totalizador ntotal)
+        {
+            ntotal.nttAdvert += Int32.Parse(item[1].ToString());
+            ntotal.nttSusp += Int32.Parse(item[2].ToString());
+            ntotal.nttAtest += Int32.Parse(item[3].ToString());
+            ntotal.nttFalta += Int32.Parse(item[4].ToString());
+            ntotal.nttReem += Int32.Parse(item[5].ToString());
+            ntotal.nttMultas += Int32.Parse(item[6].ToString());
+            ntotal.nttAcidente += Int32.Parse(item[7].ToString());
+            ntotal.nttTotal += Int32.Parse(item[8].ToString());
+
+            return ntotal;
+        }
+
 
         /// <summary>
         /// Captura o usuário corrente
@@ -112,8 +169,17 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                   <td class='table_filha_item'>" + item[4] + "</td>\n");
             html.Append("                </tr>\n");
 
+            if (!"".Equals(item[5].ToString().Trim()))
+            {
+                html.Append("                <tr>\n");
+                html.Append("                   <td class='table_filha_item'>MOTIV. DEMISS.</td>\n");
+                html.Append("                   <td class='table_filha_item' colspan='4'>" + item[5] + "</td>\n");
+                html.Append("                </tr>\n");
+            }
+
             return html.ToString();
         }
+
 
         public static string setFooterDdFunce()
         {
@@ -138,6 +204,8 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                    <th class='table_filha_cabecalho'>ATEST.</th>\n");
             html.Append("                    <th class='table_filha_cabecalho'>FALTA</th>\n");
             html.Append("                    <th class='table_filha_cabecalho'>REEMB.</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>MULTAS</th>\n");
+            html.Append("                    <th class='table_filha_cabecalho'>ACID.</th>\n");
             html.Append("                    <th class='table_filha_cabecalho'>TOTAL</th>\n");
             html.Append("                </tr>\n");
 
@@ -149,12 +217,32 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html = new StringBuilder();
             html.Append("                <tr>\n");
             html.Append("                   <td class='table_filha_item'>" + item[0] + "</td>\n");
-            html.Append("                   <td class='table_filha_item'>" + item[1] + "</td>\n");
-            html.Append("                   <td class='table_filha_item'>" + item[2] + "</td>\n");
-            html.Append("                   <td class='table_filha_item'>" + item[3] + "</td>\n");
-            html.Append("                   <td class='table_filha_item'>" + item[4] + "</td>\n");
-            html.Append("                   <td class='table_filha_item'>" + item[5] + "</td>\n");
-            html.Append("                   <td class='table_filha_item'>" + item[6] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[1] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[2] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[3] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[4] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[5] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[6] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[7] + "</td>\n");
+            html.Append("                   <td class='table_filha_item text-right'>" + item[8] + "</td>\n");
+            html.Append("                </tr>\n");
+
+            return html.ToString();
+        }
+
+        public static string setTotalizadorInTable(Totalizador nTotalizador)
+        {
+            html = new StringBuilder();
+            html.Append("                <tr>\n");
+            html.Append("                   <th class='table_filha_item'>Pontuação Total</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttAdvert + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttSusp + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttAtest + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttFalta + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttReem + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttMultas + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttAcidente + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttTotal + "</th>\n");
             html.Append("                </tr>\n");
 
             return html.ToString();
@@ -182,7 +270,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                    <tr class='treegrid-" + numNo + "'>\n");
             html.Append("                        <td><b>DESCRIÇÃO</b></td>\n");
             html.Append("                        <td class='text-right'><b>ADVERTENCIA</b></td>\n");
-            html.Append("                        <td class='text-right'><b>SUSPENÇÃO</b></td>\n");
+            html.Append("                        <td class='text-right'><b>SUSPENSÃO</b></td>\n");
             html.Append("                        <td class='text-right'><b>ATESTADO</b></td>\n");
             html.Append("                        <td class='text-right'><b>FALTA</b></td>\n");
             html.Append("                        <td class='text-right'><b>REEMBOLSO</b></td>\n");
@@ -204,7 +292,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                    <tr>\n");
             html.Append("                        <td><b>DESCRIÇÃO</b></td>\n");
             html.Append("                        <td class='text-right'><b>ADVERTENCIA</b></td>\n");
-            html.Append("                        <td class='text-right'><b>SUSPENÇÃO</b></td>\n");
+            html.Append("                        <td class='text-right'><b>SUSPENSÃO</b></td>\n");
             html.Append("                        <td class='text-right'><b>ATESTADO</b></td>\n");
             html.Append("                        <td class='text-right'><b>FALTA</b></td>\n");
             html.Append("                        <td class='text-right'><b>REEMBOLSO</b></td>\n");
@@ -251,14 +339,16 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                 <thead>");
             html.Append("                    <tr class='table_filha_cabecalho'>\n");
             html.Append("                        <th>CC</th>\n");
-            html.Append("                        <th>DESCRIÇÃO</th>\n");
-            html.Append("                        <th>MATRICULA</th>\n");
+            html.Append("                        <th>DESC.</th>\n");
+            html.Append("                        <th>MATRIC.</th>\n");
             html.Append("                        <th>DT DEMIS.</th>\n");
             html.Append("                        <th>ADVERT.</th>\n");
             html.Append("                        <th>SUSP.</th>\n");
             html.Append("                        <th>ATESTADO</th>\n");
             html.Append("                        <th>FALTA</th>\n");
             html.Append("                        <th>REEMBOLSO</th>\n");
+            html.Append("                        <th>MULTA</th>\n");
+            html.Append("                        <th>ACIDENTE</th>\n");
             html.Append("                        <th>TOTAL</th>\n");
             html.Append("                        <th></th>\n");
             html.Append("                    </tr>\n");
@@ -308,16 +398,18 @@ namespace Ecourbis.PontuacaoFuncionario.Application
 
             html.Append("                  <tr class='table_filha_item'>\n");
             html.Append("                        <td>" + ub3a.CC + "</td>\n");
-            html.Append("                        <td>" + ub3a.DESC_CC + "</td>\n");
-            html.Append("                        <td>" + ub3a.UB3_MAT + "</td>\n");
+            html.Append("                        <td style='width:950px;'>" + ub3a.DESC_CC + "</td>\n");
+            html.Append("                        <td style='width:950px;'>" + ub3a.UB3_MAT + "</td>\n");
             html.Append("                        <td>" + ub3a.UB3_DEMIS + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_ADVMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_SUSMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_ATMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_FALMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_REEMES + "</td>\n");
+            html.Append("                        <td class='text-right'>" + ub3a.UB3_MULTAS + "</td>\n");
+            html.Append("                        <td class='text-right'>" + ub3a.UB3_ACID + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_TOTAL + "</td>\n");
-            html.Append("                        <td class='text-right'><a href='DetalhesFunce.aspx?mat="+ ub3a.UB3_MAT.Substring(0, 6) + "' class='btn btn-link  link-painel' target='_blank'><img src='img/print.png' style='width:15px; height:15px;'/></a></td>\n");
+            html.Append("                        <td class='text-right'><a href='DetalhesFunce.aspx?mat=" + ub3a.UB3_MAT.Substring(0, 6) + "' class='btn btn-link  link-painel' target='_blank'><img src='img/print.png' style='width:15px; height:15px;'/></a></td>\n");
             html.Append("                    </tr>\n");
 
             return html.ToString();

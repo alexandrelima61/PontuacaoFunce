@@ -45,11 +45,9 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.Connexao
         /// </summary>  
         public void FechaConexao()
         {
-
             if (Conexao != null && Conexao.State == ConnectionState.Open)
-            {
                 Conexao.Close();
-            }
+
         }
 
         /// <summary>  

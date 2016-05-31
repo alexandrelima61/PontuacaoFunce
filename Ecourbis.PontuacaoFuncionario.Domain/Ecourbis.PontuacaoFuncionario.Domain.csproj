@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connexao\Connection.cs" />
+    <Compile Include="Entities\Totalizador.cs" />
     <Compile Include="Entities\Ub3Analitico.cs" />
     <Compile Include="Entities\Ub3Sintetico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

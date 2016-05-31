@@ -1,4 +1,5 @@
 ﻿using Ecourbis.PontuacaoFuncionario.Application;
+using Ecourbis.PontuacaoFuncionario.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +21,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
         private void setDetalhesFunce(string mat)
         {
             relatorio.InnerHtml = string.Empty;
+            Totalizador nTotalizador = new Totalizador();
             string html = string.Empty;
             DataView dvDadosFunc = Ub3DetalhesBuss.getInstance().getDadosFunce(mat);
             DataView dvDetalhes = Ub3DetalhesBuss.getInstance().getDetalheFunce(mat);
@@ -30,22 +32,24 @@ namespace Ecourbis.PontuacaoFuncionario.Web
 
                 foreach (DataRowView item in dvDadosFunc)
                     html += Utilitario.setDadosDdFunce(item);
-
+                
                 html += Utilitario.setFooterDdFunce();
             }
 
-            if(dvDetalhes.Count > 0)
+            if (dvDetalhes.Count > 0)
             {
                 html += Utilitario.setHeaderDetFunce();
 
                 foreach (DataRowView item in dvDetalhes)
+                {
                     html += Utilitario.setDadosDetFunce(item);
-
+                    nTotalizador = Utilitario.setTotalizador(item, nTotalizador);
+                }
+                html += Utilitario.setTotalizadorInTable(nTotalizador);
                 html += Utilitario.setFooterDetFunce();
             }
 
             relatorio.InnerHtml += html;
-
         }
     }
 }

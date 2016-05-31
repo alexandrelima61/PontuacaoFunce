@@ -26,10 +26,10 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return ub3PRDRepo.getClosePonto();
         }
 
-        public System.Data.DataView getDtvPrdClose(bool isAtivo, List<string> anomes)
-        {            
+        public System.Data.DataView getDtvPrdClose(string grupo, bool isAtivo, List<string> anomes)
+        {
             ub3PRDRepo = Ub3PrdRepository.getNewInstance();
-            return ub3PRDRepo.getDadosPrd(isAtivo, anomes);
+            return ub3PRDRepo.getDadosPrd(grupo, isAtivo, anomes);
         }
     }
 }

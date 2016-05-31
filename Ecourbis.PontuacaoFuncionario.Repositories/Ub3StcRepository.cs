@@ -39,24 +39,18 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
             {
                 IDataReader reader = _Context.RetornaDados(qryConsulta);
 
-                int idxDsc = reader.GetOrdinal("DESCRI");
-                int idxAdm = reader.GetOrdinal("UB3_ADVMES");
-                int idxSsn = reader.GetOrdinal("UB3_SUSMES");
-                int idxAtm = reader.GetOrdinal("UB3_ATMES");
-                int idxFlm = reader.GetOrdinal("UB3_FALMES");
-                int idxRem = reader.GetOrdinal("UB3_REEMES");
-                int idxTtl = reader.GetOrdinal("UB3_TOTAL");
-
                 while (reader.Read())
                 {
                     Ub3Sintetico ub3S = new Ub3Sintetico();
-                    ub3S.DESCRIC = reader.GetString(idxDsc);
-                    ub3S.UB3_ADVMES = reader.GetDouble(idxAdm);
-                    ub3S.UB3_SUSMES = reader.GetDouble(idxSsn);
-                    ub3S.UB3_ATMES = reader.GetDouble(idxAtm);
-                    ub3S.UB3_FALMES = reader.GetDouble(idxFlm);
-                    ub3S.UB3_REEMES = reader.GetDouble(idxRem);
-                    ub3S.UB3_TOTAL = reader.GetDouble(idxTtl);
+                    ub3S.DESCRIC = reader.GetString(reader.GetOrdinal("DESCRI"));
+                    ub3S.UB3_ADVMES = reader.GetDouble(reader.GetOrdinal("UB3_ADVMES"));
+                    ub3S.UB3_SUSMES = reader.GetDouble(reader.GetOrdinal("UB3_SUSMES"));
+                    ub3S.UB3_ATMES = reader.GetDouble(reader.GetOrdinal("UB3_ATMES"));
+                    ub3S.UB3_FALMES = reader.GetDouble(reader.GetOrdinal("UB3_FALMES"));
+                    ub3S.UB3_REEMES = reader.GetDouble(reader.GetOrdinal("UB3_REEMES"));
+                    ub3S.UB3_MULTAS = reader.GetDouble(reader.GetOrdinal("UB3_MULTAS"));
+                    ub3S.UB3_ACID = reader.GetDouble(reader.GetOrdinal("UB3_ACID"));
+                    ub3S.UB3_TOTAL = reader.GetDouble(reader.GetOrdinal("UB3_TOTAL"));
 
                     lstUb3StcPrd.Add(ub3S);
                 }
