@@ -79,7 +79,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             sb.Append("FROM \n");
             sb.Append("(\n");
             sb.Append("	SELECT UA1.UA1_GRUPO, UA1.UA1_DESCRI, \n");
-            sb.Append("		   /* retroagir dinamicamente para os meses anteriores*/\n");
+            sb.Append("		   /* retroagir dinamicamente os meses*/\n");
             sb.Append("		   CASE UB3.UB3_DTARQ WHEN '" + anomes[0] + "' THEN SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3_MULTAS+UB3_ACID) ELSE 0 END AS " + getM(anomes[0]) + ",\n");
             sb.Append("		   CASE UB3.UB3_DTARQ WHEN '" + anomes[1] + "' THEN SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3_MULTAS+UB3_ACID) ELSE 0 END AS " + getM(anomes[1]) + ",\n");
             sb.Append("		   CASE UB3.UB3_DTARQ WHEN '" + anomes[2] + "' THEN SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3_MULTAS+UB3_ACID) ELSE 0 END AS " + getM(anomes[2]) + ",\n");

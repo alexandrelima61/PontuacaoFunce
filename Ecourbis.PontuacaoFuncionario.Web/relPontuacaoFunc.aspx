@@ -31,10 +31,10 @@
 <body>
     <form id="form1" runat="server">
 
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="margin-top:6px;">
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <div class="alert alert-success text-center" runat="server" id="div1">
+                    <div class="alert alert-info text-center" runat="server" id="div1">
                         <strong>Relatório de Pontuação Funcionário -
                                 <asp:Label ID="lblRel" runat="server" /></strong>
                     </div>
@@ -43,5 +43,6 @@
             </div>
         </div>
     </form>
+
 </body>
 </html>

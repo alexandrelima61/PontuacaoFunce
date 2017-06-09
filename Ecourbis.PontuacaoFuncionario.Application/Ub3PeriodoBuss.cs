@@ -1,16 +1,12 @@
 ﻿using Ecourbis.PontuacaoFuncionario.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace Ecourbis.PontuacaoFuncionario.Application
 {
     public class Ub3PeriodoBuss
     {
         private static Ub3PeriodoBuss instance;
-        private static Ub3PrdRepository ub3PRDRepo;
 
         public static Ub3PeriodoBuss getNewInstance()
         {
@@ -22,14 +18,12 @@ namespace Ecourbis.PontuacaoFuncionario.Application
 
         public string getClosePonto()
         {
-            ub3PRDRepo = Ub3PrdRepository.getNewInstance();
-            return ub3PRDRepo.getClosePonto();
+            return Ub3PrdRepository.getNewInstance().getClosePonto();
         }
 
-        public System.Data.DataView getDtvPrdClose(string grupo, bool isAtivo, List<string> anomes)
+        public DataView getDtvPrdClose(string grupo, bool isAtivo, List<string> anomes)
         {
-            ub3PRDRepo = Ub3PrdRepository.getNewInstance();
-            return ub3PRDRepo.getDadosPrd(grupo, isAtivo, anomes);
+            return Ub3PrdRepository.getNewInstance().getDadosPrd(grupo, isAtivo, anomes);
         }
     }
 }

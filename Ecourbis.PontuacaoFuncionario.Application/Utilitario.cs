@@ -17,30 +17,40 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             string[] userAuthor = new string[2];
             switch (__User)
             {
-                case "curien": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //CESAR ROBERTO URIEN
-                case "fcasagrande": userAuthor[0] = "'007','008','010'"; userAuthor[1] = "OK"; break;   //FERNANDO CASAGRANDE
+                case "curien": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //CESAR ROBERTO URIEN                
                 case "wfreitas": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //WALTER GOMES DE FREITAS
+
+                //DP/RH
+                case "npassoni": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //NANCI TAKAHASHI PASSONI
+                case "rjulio": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //REGINA CELIA JULIO
+                case "cmoreira": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //CELSO MOREIRA DOS SANTOS
+                case "llanzarini": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                     //LUIS CARLOS TRAPP LANZARINI
+                case "daragon": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //DOUGLAS DE MATOS ARAGON
+
+                //T.I.
+                case "rribeiro": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //T.I.
+                case "jalima": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //T.I.
+                case "fcoelho": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //T.I.
+                case "bsilva": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //T.I.
+
+                //CTL
+                case "fcasagrande": userAuthor[0] = "'007','008','010'"; userAuthor[1] = "OK"; break;   //FERNANDO CASAGRANDE
 
                 //Operação Sul
                 case "olopes": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                    //OLSEN LOPES DA SILVA JUNIOR
                 case "aargolo": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //ALTAIR LUCIO ARGOLO
                 case "jdias": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                     //JOAO BITENCOURT DIAS
                 case "vchaves": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //VALDIR PEREIRA CHAVES
+                case "jfoliveira": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                //JORCIVAL FERNANDES DE OLIVEIRA JUNIOR
 
                 //Operação Leste
-                case "eperes": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //EVANILSON DE SOUZA PERES
+                case "erodrigues": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                //EDINEI RODRIGUES
                 case "jpinto": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //JONATAS ALVES PINTO
                 case "jfesta": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //JOCINEI SERGIO FESTA
                 case "caguiar": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                   //CARLOS EMIDIO R DE AGUIAR
+                case "cmendes": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                   //CELIO MENDES
+                case "rperes": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //ROBSON PONCE PERES
 
-                case "npassoni": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //NANCI TAKAHASHI PASSONI
-                case "rjulio": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //REGINA CELIA JULIO
-                case "cmoreira": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //CELSO MOREIRA DOS SANTOS
-                case "llanzarini": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                     //LUIS CARLOS TRAPP LANZARINI
-                case "daragon": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //DOUGLAS DE MATOS ARAGON
-                case "jalima": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //T.I.
-                case "fcoelho": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //T.I.
-                case "bsilva": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //T.I.
                 default: break;
             }
 
@@ -109,12 +119,22 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             if (isfuncAtivos)
             {
                 html.Append("       <div class='container'>");
-                html.Append("           <h3>FUNCIONÁRIOS ATIVOS</h3>");
+                html.Append("           <div class='col-sm-4'>");
+                html.Append("               <h3>FUNCIONÁRIOS ATIVOS</h3>");
+                html.Append("           </div>");
+                html.Append("           <div class='col-sm-3 col-sm-offset-5'>");
+                html.Append("               <h3 class='text-right'> <input type=\"button\" onclick=\"tableToExcel('tableToExcelA', 'Funciários Ativos')\" value=\"Export to excel funcionários ativos\" class=\"btn btn-link\" /></h3>");
+                html.Append("           </div>");
             }
             else
             {
                 html.Append("       <div class='container'>");
-                html.Append("           <h3>FUNCIONÁRIOS DEMITIDOS</h3>");
+                html.Append("           <div class='col-sm-4'>");
+                html.Append("               <h3>FUNCIONÁRIOS DEMITIDOS</h3>");
+                html.Append("           </div>");
+                html.Append("           <div class='col-sm-3 col-sm-offset-5'>");
+                html.Append("               <h3 class='text-right'> <input type=\"button\" onclick=\"tableToExcel('tableToExcelD', 'Funciários Ativos')\" value=\"Export to excel funcionários demitidos\" class=\"btn btn-link\" /></h3>");
+                html.Append("           </div>");
             }
             return html.ToString();
         }
@@ -266,7 +286,9 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         {
             html = new StringBuilder();
 
-            html.Append("           <table class='table table-responsive tree' style='width:100%;'>\n");
+            //html.Append("               <h3 class='text-right'> <input type=\"button\" onclick=\"tableToExcel('tableToExcelUnidade', 'Funciários Ativos')\" value=\"Export to excel unidade\" class=\"btn btn-link\" /></h3>\n");
+
+            html.Append("           <table id='tableToExcelUnidade' class='table table-responsive tree' style='width:100%;'>\n");
             html.Append("                    <tr class='treegrid-" + numNo + "'>\n");
             html.Append("                        <td><b>DESCRIÇÃO</b></td>\n");
             html.Append("                        <td class='text-right'><b>ADVERTENCIA</b></td>\n");
@@ -416,10 +438,10 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         }
 
         //primeiro relatório 
-        public static string setHeadeDadosPRDClose(List<string> anomes)
+        public static string setHeadeDadosPRDClose(List<string> anomes, string id)
         {
             html = new StringBuilder();
-            html.Append("            <table class='table table-responsive config-table'>\n");
+            html.Append("            <table id='" + id + "' class='table table-responsive config-table'>\n");
             html.Append("                <tr>\n");
             html.Append("                    <td><b>GRUPO</b></td>\n");
             html.Append("                    <td><b>DESCRIÇÃO</b></td>\n");

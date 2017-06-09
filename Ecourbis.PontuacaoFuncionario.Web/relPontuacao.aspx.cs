@@ -13,6 +13,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             __User = Utilitario.GetUser();
+            __User = __User.Equals("") ? "jalima" : __User;
             isAuthorizer = Utilitario.GetAuthorize(__User);
             btnGrRel.Enabled = "OK".Equals(isAuthorizer[1]);
 
@@ -42,7 +43,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
             {
                 htmlPage += Utilitario.setTitulo(true);
 
-                htmlPage += Utilitario.setHeadeDadosPRDClose(anomes);
+                htmlPage += Utilitario.setHeadeDadosPRDClose(anomes, "tableToExcelA");
 
                 foreach (DataRowView item in dvUltPrdClose)
                 {
@@ -64,7 +65,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web
             if (dvUltPrdClose.Count > 0)
             {
                 htmlPage += Utilitario.setTitulo(false);
-                htmlPage += Utilitario.setHeadeDadosPRDClose(anomes);
+                htmlPage += Utilitario.setHeadeDadosPRDClose(anomes, "tableToExcelD");
 
                 foreach (DataRowView item in dvUltPrdClose)
                 {

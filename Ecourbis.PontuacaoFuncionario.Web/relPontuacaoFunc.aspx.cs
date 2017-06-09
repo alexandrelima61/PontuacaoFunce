@@ -30,9 +30,9 @@ namespace Ecourbis.PontuacaoFuncionario.Web
             int numPai = 1;
             string htmlResult = string.Empty;                                           //html da tablea
             Ub3StcBuss ub3STC = Ub3StcBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss
-            Ub3AntBuss ub3ANT = Ub3AntBuss.getNewInstance();                            //cria uma instancia para a class Ub3StcBuss                
+            Ub3AntBuss ub3ANT = Ub3AntBuss.getNewInstance();                            //cria uma instancia para a class Ub3AntBuss                
             string prdde = Utilitario.setDatePrd(prdDe);                                //cria e valoriza variavel de data padrao protheus
-            string prdate = Utilitario.setDatePrd(prdAte);                                //cria e valoriza variavel de data padrao protheus
+            string prdate = Utilitario.setDatePrd(prdAte);                              //cria e valoriza variavel de data padrao protheus
 
             List<Ub3Sintetico> lstUb3Stc = ub3STC.getListUb3Stc(isAtivo,prdDe, prdAte, grp);    //carrega a lista de Ub3Sintetico
             List<Ub3Analitico> lstUb3Ant;                                               //carrega a lista de Ub3Analitico

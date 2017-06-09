@@ -35,6 +35,17 @@
     padding: 5px 5px;
 }
 
+.headerOrfooter-page {
+    background-color: #0c6ab6 !important;
+    border-radius: 0 !important;
+    padding: 8px 0 5px 0 !important;
+}
+
+.logo {
+    width: 180px !important;
+    height: 35px !important;
+}
+
 .divCenter {
     width: 500px; /* Tamanho da Largura da Div */
     height: 200px; /* Tamanho da Altura da Div */
