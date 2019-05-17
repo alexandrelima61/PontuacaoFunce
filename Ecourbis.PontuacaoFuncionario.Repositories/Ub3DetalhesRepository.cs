@@ -5,17 +5,14 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Ecourbis.PontuacaoFuncionario.Repositories
-{
-    public class Ub3DetalhesRepository
-    {
+namespace Ecourbis.PontuacaoFuncionario.Repositories {
+    public class Ub3DetalhesRepository {
         private string qryConsulta;
         private static Ub3DetalhesRepository instance;
         private Connection _Context;
         private string ConnectionString = ConfigurationManager.ConnectionStrings["DADOSADVEntitiesSul"].ConnectionString;
 
-        public static Ub3DetalhesRepository getNewInstance()
-        {
+        public static Ub3DetalhesRepository getNewInstance() {
             if (instance == null)
                 instance = new Ub3DetalhesRepository();
 
@@ -27,27 +24,22 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
         /// </summary>
         /// <param name="matricula"></param>
         /// <returns>DataView</returns>
-        public DataView getDadosFunce(string matricula)
-        {
+        public DataView getDadosFunce(string matricula) {
             DataView dv = new DataView();
             DataSet ds = new DataSet();
 
-            using (var conn = new SqlConnection())
-            {
-                try
-                {
+            using (var conn = new SqlConnection()) {
+                try {
                     qryConsulta = SQLCommand.getDadosFunce(matricula);
                     conn.ConnectionString = ConnectionString;
                     conn.Open();
 
-                    using (var da = new SqlDataAdapter(qryConsulta, conn))
-                    {
+                    using (var da = new SqlDataAdapter(qryConsulta, conn)) {
                         da.Fill(ds);
                         dv = new DataView(ds.Tables[0]);
                     }
                     conn.Close();
-                }
-                catch (Exception) { }
+                } catch (Exception) { }
             }
             return dv;
         }
@@ -57,27 +49,22 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
         /// </summary>
         /// <param name="matricula"></param>
         /// <returns>DataView</returns>
-        public DataView getDetalherFunce(string matricula)
-        {
+        public DataView getDetalherFunce(string matricula, bool isAtivo) {
             DataView dv = new DataView();
             DataSet ds = new DataSet();
 
-            using (var conn = new SqlConnection())
-            {
-                try
-                {
-                    qryConsulta = SQLCommand.getDetalhesFunce(matricula);
+            using (var conn = new SqlConnection()) {
+                try {
+                    qryConsulta = SQLCommand.getDetalhesFunce(matricula, isAtivo);
                     conn.ConnectionString = ConnectionString;
                     conn.Open();
 
-                    using (var da = new SqlDataAdapter(qryConsulta, conn))
-                    {
+                    using (var da = new SqlDataAdapter(qryConsulta, conn)) {
                         da.Fill(ds);
                         dv = new DataView(ds.Tables[0]);
                     }
                     conn.Close();
-                }
-                catch (Exception) { }
+                } catch (Exception) { }
             }
             return dv;
         }

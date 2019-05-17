@@ -6,17 +6,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 
-namespace Ecourbis.PontuacaoFuncionario.Repositories
-{
-    public class Ub3AntRepository
-    {
+namespace Ecourbis.PontuacaoFuncionario.Repositories {
+    public class Ub3AntRepository {
         private string qryConsulta;
         private static Ub3AntRepository instance;
         private Connection _Context;
         private string ConnectionString = ConfigurationManager.ConnectionStrings["DADOSADVEntitiesSul"].ConnectionString;
 
-        public static Ub3AntRepository getNewInstance()
-        {
+        public static Ub3AntRepository getNewInstance() {
             if (instance == null)
                 instance = new Ub3AntRepository();
 
@@ -29,20 +26,17 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
         /// <param name="grupo"></param>
         /// <param name="prdDe"></param>
         /// <returns></returns>
-        public List<Ub3Analitico> getListUb3Analitico(bool isAtivo, string grupo, string prdDe, string prdAte)
-        {
+        public List<Ub3Analitico> getListUb3Analitico(bool isAtivo, string grupo, string prdDe, string prdAte) {
             List<Ub3Analitico> lstUb3AntPrd = new List<Ub3Analitico>();
             _Context = new Connection(this.ConnectionString);
             _Context.AbrirConexao();
             qryConsulta = string.Empty;
             qryConsulta = SQLCommand.getQryUb3Analitico(isAtivo, prdDe, prdAte, grupo);
 
-            try
-            {
+            try {
                 IDataReader reader = _Context.RetornaDados(qryConsulta);
-                                
-                while (reader.Read())
-                {
+
+                while (reader.Read()) {
                     Ub3Analitico ub3a = new Ub3Analitico();
 
                     ub3a.UNIDADE = reader.GetString(reader.GetOrdinal("UNIDADE"));
@@ -61,8 +55,7 @@ namespace Ecourbis.PontuacaoFuncionario.Repositories
 
                     lstUb3AntPrd.Add(ub3a);
                 }
-            }
-            catch (Exception) { }
+            } catch (Exception) { }
 
             _Context.FechaConexao();
             return lstUb3AntPrd;

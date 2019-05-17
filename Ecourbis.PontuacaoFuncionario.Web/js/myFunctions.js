@@ -1,12 +1,25 @@
-﻿//Padrão de data, utilizado para configurar o modelo e a lingua desejada.
+﻿var tableToExcel = (function () {
+    var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+    return function (table, name) {
+        if (!table.nodeType) table = document.getElementById(table);
+        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
+        window.location.href = uri + base64(format(template, ctx));
+    };
+})();
+
+
+//Padrão de data, utilizado para configurar o modelo e a lingua desejada.
 $(function () {
-    $('.datetimepicker').datetimepicker({
-        locale: 'pt-BR',
-        viewMode: 'years',
-        format: 'MM/YYYY'
-    });
+    //$('.datetimepicker').datetimepicker({
+    //    locale: 'pt-BR',
+    //    viewMode: 'years',
+    //    format: 'MM/YYYY'
+    //});
     $('.tree').treegrid({
-        treeColumn: 0,
+        treeColumn: 0
     });
     //trazer o tree fechado
     //$('.tree').treegrid('collapseAll');
@@ -18,10 +31,15 @@ $(document).ready(function () {
         "bPaginate": true,
         "bJQueryUI": false,
         "sPaginationType": "full_numbers",
-        "dom": 'Rlfrtip'
-    });
+        "dom": 'Rlfrtip',
+        aLengthMenu: [
+            [25, 50, 100, 200, -1],
+            [25, 50, 100, 200, "Todos"]
+        ],
+        iDisplayLength: 25
+    }).api();
 
-    oTable.fnSort([[9, 'desc']]);
+    oTable.fnSort([[11, 'desc']]);
 });
 
 //cria a div contendo a gif de loadin

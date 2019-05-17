@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
-{
-    public class SQLCommand
-    {
+namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand {
+    public class SQLCommand {
         private static StringBuilder sb;
 
-        public static string getQryUb3Sintetico(bool isAtivo, string prdDe, string prdAte, string grupo)
-        {
+        public static string getQryUb3Sintetico(bool isAtivo, string prdDe, string prdAte, string grupo) {
             string sinal = isAtivo ? "<>" : "=";
             sb = new StringBuilder();
 
             sb.Append("SELECT UA1.UA1_DESCRI as DESCRI, SUM(UB3_ADVMES) AS UB3_ADVMES, SUM(UB3_SUSMES) AS UB3_SUSMES, SUM(UB3_ATMES) AS UB3_ATMES, SUM(UB3_FALMES) AS UB3_FALMES, SUM(UB3_REEMES) AS UB3_REEMES,SUM(UB3_MULTAS) AS UB3_MULTAS,SUM(UB3_ACID) AS UB3_ACID,\n");
-            sb.Append("SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES) AS UB3_TOTAL\n");
+            sb.Append("SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3.UB3_MULTAS+UB3.UB3_ACID) AS UB3_TOTAL\n");
             sb.Append("FROM UB3010 UB3 \n");
             sb.Append("	INNER JOIN SRA010 SRA ON UB3.UB3_MAT = SRA.RA_MAT AND SRA.D_E_L_E_T_ = ''\n");
             sb.Append("	INNER JOIN CTT010 CTT ON SRA.RA_CC = CTT.CTT_CUSTO AND CTT.D_E_L_E_T_ = ''\n");
@@ -31,11 +28,10 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             return sb.ToString();
         }
 
-        public static string getQryUb3Analitico(bool isAtivo, string prdDe, string prdAte, string grupo)
-        {
+        public static string getQryUb3Analitico(bool isAtivo, string prdDe, string prdAte, string grupo) {
             string sinal = isAtivo ? "<>" : "=";
             sb = new StringBuilder();
-            sb.Append("SELECT UA1.UA1_DESCRI AS UNIDADE, SRA.RA_CC AS CC, CTT.CTT_DESC01 AS DESC_CC, UB3_MAT  + ' - '+ SRA.RA_NOME AS UB3_MAT,\n");
+            sb.Append("SELECT DISTINCT UA1.UA1_DESCRI AS UNIDADE, SRA.RA_CC AS CC, CTT.CTT_DESC01 AS DESC_CC, UB3_MAT  + ' - '+ SRA.RA_NOME AS UB3_MAT,\n");
             if (isAtivo)
                 sb.Append("UB3_DEMIS,\n");
             else
@@ -43,29 +39,28 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
 
             sb.Append("CONVERT(VARCHAR,CAST(UB3_DEMIS AS datetime),103) as UB3_DEMIS,\n");
             sb.Append("SUM(UB3_ADVMES) AS UB3_ADVMES, SUM(UB3_SUSMES) AS UB3_SUSMES, SUM(UB3_ATMES) AS UB3_ATMES, SUM(UB3_FALMES) AS UB3_FALMES, SUM(UB3_REEMES) AS UB3_REEMES,SUM(UB3_MULTAS) AS UB3_MULTAS,SUM(UB3_ACID) AS UB3_ACID,\n");
-            sb.Append("SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES) AS UB3_TOTAL\n");
+            sb.Append("SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3.UB3_MULTAS+UB3.UB3_ACID) AS UB3_TOTAL\n");
             sb.Append("FROM UB3010 UB3\n");
-            sb.Append("	INNER JOIN SRA010 SRA ON UB3.UB3_MAT = SRA.RA_MAT AND SRA.D_E_L_E_T_ = ''\n");
+            sb.Append("	INNER JOIN SRA010 SRA ON UB3.UB3_MAT = SRA.RA_MAT AND SRA.D_E_L_E_T_ = '' AND SRA.RA_SITFOLH " + sinal + " 'D'\n");
             sb.Append("	INNER JOIN CTT010 CTT ON SRA.RA_CC = CTT.CTT_CUSTO AND CTT.D_E_L_E_T_ = ''\n");
             sb.Append("	INNER JOIN UA1010 UA1 ON SRA.RA_CC = UA1.UA1_CCUSTO AND UA1.UA1_GRUPO = '" + grupo + "' AND UA1.D_E_L_E_T_ = '' \n");
             sb.Append("WHERE UB3.D_E_L_E_T_ = ''\n");
 
             sb.Append("	AND UB3_SITFOL " + sinal + " 'D'\n");
 
-            sb.Append("AND UB3_DTARQ BETWEEN '" + prdDe + "' AND '" + prdAte + "'\n");
+            sb.Append("AND UB3_DTARQ BETWEEN '" + prdDe + "' AND '" + prdAte + "'\n/* AND UB3.UB3_MAT = '009291'\n*/");
             sb.Append("GROUP BY UA1.UA1_DESCRI, SRA.RA_CC, CTT.CTT_DESC01, UB3.UB3_MAT, SRA.RA_NOME,UB3_DEMIS\n");
-            sb.Append("HAVING SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES) > 0");
+            sb.Append("HAVING SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3.UB3_MULTAS+UB3.UB3_ACID) <> 0");
+            sb.Append("ORDER BY UB3_MAT");
 
             return sb.ToString();
         }
 
-        public static string getQryFechamentoPonto()
-        {
+        public static string getQryFechamentoPonto() {
             return "SELECT convert(varchar,cast(MAX(PO_DATAFIM) AS datetime),103) AS DATA FROM SPO010";
         }
 
-        public static string getQryPrdClose(string grupo, bool isAtivo, List<string> anomes)
-        {
+        public static string getQryPrdClose(string grupo, bool isAtivo, List<string> anomes) {
             string sinal = isAtivo ? "<>" : "=";
             sb = new StringBuilder();
             sb.Append("SELECT UA1_GRUPO, UA1_DESCRI,\n");
@@ -110,8 +105,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             return sb.ToString();
         }
 
-        public static string getDadosFunce(string matricula)
-        {
+        public static string getDadosFunce(string matricula) {
             sb = new StringBuilder();
             sb.Append("SELECT\n");
             sb.Append("     RA_MAT AS MAT,\n");
@@ -129,8 +123,8 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             return sb.ToString();
         }
 
-        public static string getDetalhesFunce(string matricula)
-        {
+        public static string getDetalhesFunce(string matricula, bool isAtivo) {
+            string sinal = isAtivo ? "<>" : "=";
             sb = new StringBuilder();
             sb.Append("SELECT\n");
             sb.Append("    SUBSTRING(UB3_DTARQ, 5, 2) + '/' + SUBSTRING(UB3_DTARQ, 1, 4) AS MESANO,\n");
@@ -145,7 +139,9 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
             sb.Append("FROM UB3010\n");
             sb.Append("WHERE UB3_FILIAL = '  '\n");
             sb.Append("AND UB3_MAT = '" + matricula + "'\n");
+            sb.Append("AND UB3_SITFOL " + sinal + " 'D'\n");
             sb.Append("AND D_E_L_E_T_ = ' '\n");
+            sb.Append("AND (UB3_ADVMES + UB3_SUSMES + UB3_ATMES + UB3_FALMES + UB3_REEMES + UB3_MULTAS + UB3_ACID) > 0\n");
 
             return sb.ToString();
         }
@@ -155,11 +151,9 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
         /// </summary>
         /// <param name="anomes"></param>
         /// <returns></returns>
-        public static string getM(string anomes)
-        {
+        public static string getM(string anomes) {
             string mes = string.Empty;
-            switch (anomes.Substring(4, 2))
-            {
+            switch (anomes.Substring(4, 2)) {
                 case "01": mes = "[JAN]"; break;
                 case "02": mes = "[FEV]"; break;
                 case "03": mes = "[MAR]"; break;
@@ -182,8 +176,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand
         /// </summary>
         /// <param name="anomes"></param>
         /// <returns></returns>
-        private static string getSumPrd(List<string> anomes)
-        {
+        private static string getSumPrd(List<string> anomes) {
             return "QD1." + getM(anomes[0]) + " + QD1." + getM(anomes[1]) + " + QD1." + getM(anomes[2])
                     + " + QD1." + getM(anomes[3]) + "+ QD1." + getM(anomes[4]) + " + QD1." + getM(anomes[5])
                     + " + QD1." + getM(anomes[6]) + " + QD1." + getM(anomes[7]) + " + QD1." + getM(anomes[8])

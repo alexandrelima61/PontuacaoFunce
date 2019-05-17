@@ -1,0 +1,210 @@
+[
+  {
+    "user": "curien",
+    "nome": "CESAR ROBERTO URIEN",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "wfreitas",
+    "nome": "WALTER GOMES DE FREITAS",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "npassoni",
+    "nome": "NANCI TAKAHASHI PASSONI",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "rjulio",
+    "nome": "REGINA CELIA JULIO",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "cmsantos",
+    "nome": "CELSO MOREIRA DOS SANTOS",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "llanzarini",
+    "nome": "LUIS CARLOS TRAPP LANZARINI",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "daragon",
+    "nome": "DOUGLAS DE MATOS ARAGON",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "rrsilva",
+    "nome": "RUTH RODRIGUES ADOLPHI",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "hpaula",
+    "nome": "HELOYSE CRISTINY DE PAULA",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "sssilva",
+    "nome": "SOLANGE SANTOS DA SILVA",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "rribeiro",
+    "nome": "ROBSON ANDRADE RIBEIRO",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "jalima",
+    "nome": "JOSE ALEXANDRE DE LIMA",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "fcoelho",
+    "nome": "FLAVIO MARCELO COELHO",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "bsilva",
+    "nome": "BRUNO SOUZA SILVA",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "fcasagrande",
+    "nome": "FERNANDO CASAGRANDE",
+    "auths": {
+      "auth": "'007','008','010'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "olopes",
+    "nome": "OLSEN LOPES JUNIOR",
+    "auths": {
+      "auth": "'002'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "aespigato",
+    "nome": "ALEXANDRE DUMONT ESPIGATO",
+    "auths": {
+      "auth": "'002'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "jdias",
+    "nome": "JOAO BITTENCOURT DIAS",
+    "auths": {
+      "auth": "'002'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "vchaves",
+    "nome": "VALDIR PEREIRA CHAVES",
+    "auths": {
+      "auth": "'002'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "jfoliveira",
+    "nome": "JORCIVAL FERNANDES DE OLIVEURA JUNIOR",
+    "auths": {
+      "auth": "'002'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "erodrigues",
+    "nome": "EDINEI RODRIGUES",
+    "auths": {
+      "auth": "'001'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "caguiar",
+    "nome": "CARLOS EMIDIO R DE AGUIAR",
+    "auths": {
+      "auth": "'001'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "csilva",
+    "nome": "CLEDSON VALMIR DA SILVA",
+    "auths": {
+      "auth": "'001'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "rperes",
+    "nome": "ROBSON PONCE PERES",
+    "auths": {
+      "auth": "'001'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "mbalsani",
+    "nome": "MARCELO BALSANI",
+    "auths": {
+      "auth": "",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "pcosta",
+    "nome": "PAULO ROGÉRIO GOMES DA COSTA",
+    "auths": {
+      "auth": "'001'",
+      "status": "OK"
+    }
+  }
+]

@@ -26,23 +26,46 @@
     <script src="Config/datepicker/js/bootstrap-datepicker.js"></script>
     <script src="Config/DataTables/media/js/jquery.dataTables.min.js"></script>
     <script src="js/myFunctions.js"></script>
-    
+
 </head>
 <body>
     <form id="form1" runat="server">
 
-        <div class="panel panel-default" style="margin-top:6px;">
+        <div class="panel panel-default" style="margin-top: 6px;">
             <div class="panel-body">
-                <div class="col-sm-12">
-                    <div class="alert alert-info text-center" runat="server" id="div1">
-                        <strong>Relatório de Pontuação Funcionário -
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-info text-center" runat="server" id="div1">
+                            <strong>Relatório de Pontuação Funcionário -
                                 <asp:Label ID="lblRel" runat="server" /></strong>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 text-right">
+                        <div class="col-sm-12">
+                            <button class="btn btn-sm btn-success"
+                                id="export_to_excel">
+                                Exportar para Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div id="result" runat="server" style="padding: 15px 15px;"></div>
                     </div>
                 </div>
-                <div id="result" runat="server" style="padding: 15px 15px;"></div>
             </div>
         </div>
     </form>
+
+    <script type="text/javascript">
+        $(document).on('click', '#export_to_excel', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var htmltable = document.getElementById('tableToExcelUnidade');
+            var html = htmltable.outerHTML;
+            window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+        });
+
+    </script>
 
 </body>
 </html>

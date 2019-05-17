@@ -6,26 +6,25 @@ using System.Data;
 using System.Net;
 using System.Text;
 
-namespace Ecourbis.PontuacaoFuncionario.Application
-{
-    public class Utilitario
-    {
+namespace Ecourbis.PontuacaoFuncionario.Application {
+    public class Utilitario {
         private static StringBuilder html;
 
-        public static string[] GetAuthorize(string __User)
-        {
+        public static string[] GetAuthorize(string __User) {
             string[] userAuthor = new string[2];
-            switch (__User)
-            {
+            switch (__User) {
                 case "curien": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //CESAR ROBERTO URIEN                
                 case "wfreitas": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //WALTER GOMES DE FREITAS
 
                 //DP/RH
                 case "npassoni": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //NANCI TAKAHASHI PASSONI
                 case "rjulio": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //REGINA CELIA JULIO
-                case "cmoreira": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //CELSO MOREIRA DOS SANTOS
+                case "cmsantos": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //CELSO MOREIRA DOS SANTOS
                 case "llanzarini": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                     //LUIS CARLOS TRAPP LANZARINI
                 case "daragon": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //DOUGLAS DE MATOS ARAGON
+                case "rrsilva": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //RUTH RODRIGUES ADOLPHI
+                case "hpaula": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //HELOYSE CRISTINY DE PAULA
+                case "sssilva": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                        //SOLANGE SANTOS DA SILVA
 
                 //T.I.
                 case "rribeiro": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                       //T.I.
@@ -38,7 +37,8 @@ namespace Ecourbis.PontuacaoFuncionario.Application
 
                 //Operação Sul
                 case "olopes": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                    //OLSEN LOPES DA SILVA JUNIOR
-                case "aargolo": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //ALTAIR LUCIO ARGOLO
+                                                                                                        //case "aargolo": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //ALTAIR LUCIO ARGOLO
+                case "aespigato": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //ALTAIR LUCIO ARGOLO
                 case "jdias": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                     //JOAO BITENCOURT DIAS
                 case "vchaves": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                   //VALDIR PEREIRA CHAVES
                 case "jfoliveira": userAuthor[0] = "'002'"; userAuthor[1] = "OK"; break;                //JORCIVAL FERNANDES DE OLIVEIRA JUNIOR
@@ -48,14 +48,16 @@ namespace Ecourbis.PontuacaoFuncionario.Application
                 case "jpinto": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //JONATAS ALVES PINTO
                 case "jfesta": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //JOCINEI SERGIO FESTA
                 case "caguiar": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                   //CARLOS EMIDIO R DE AGUIAR
-                case "cmendes": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                   //CELIO MENDES
+                case "csilva": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //CLEDSON VALMIR DA SILVA
                 case "rperes": userAuthor[0] = "'001'"; userAuthor[1] = "OK"; break;                    //ROBSON PONCE PERES
+
+                //
+                case "mbalsani": userAuthor[0] = ""; userAuthor[1] = "OK"; break;                         //T.I.
 
                 default: break;
             }
 
-            if (userAuthor[0] == null)
-            {
+            if (userAuthor[0] == null) {
                 userAuthor[0] = "";
                 userAuthor[1] = "";
             }
@@ -68,13 +70,11 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// </summary>
         /// <param name="closeP">ultimo fechamento do ponto</param>
         /// <returns>List<string></returns>
-        public static List<string> getAnoMes(string closeP)
-        {
+        public static List<string> getAnoMes(string closeP) {
             List<string> anomes = new List<string>();
             DateTime anomeCurrent = DateTime.Parse(closeP);
 
-            for (int i = 0; i < 12; i++)
-            {
+            for (int i = 0; i < 12; i++) {
                 if (i == 0)
                     anomes.Add(anomeCurrent.ToString("yyyyMM"));
                 else
@@ -85,8 +85,23 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         }
 
         //Totalizador
-        public static Totalizador setTotalizador(DataRowView item, Totalizador ntotal)
-        {
+        public static Totalizador setTotalizador(DataRowView item, Totalizador ntotal, Totalizador nTtPrd, string pd, string pa) {
+            string prd = item[0].ToString().Substring(3, 4) + item[0].ToString().Substring(0, 2);
+            int nPrd = int.Parse(prd);
+            int nPd = int.Parse(pd);
+            int nPa = int.Parse(pa);
+
+            if (nPrd >= nPd && nPrd <= nPa) {
+                nTtPrd.nttAdvert += Int32.Parse(item[1].ToString());
+                nTtPrd.nttSusp += Int32.Parse(item[2].ToString());
+                nTtPrd.nttAtest += Int32.Parse(item[3].ToString());
+                nTtPrd.nttFalta += Int32.Parse(item[4].ToString());
+                nTtPrd.nttReem += Int32.Parse(item[5].ToString());
+                nTtPrd.nttMultas += Int32.Parse(item[6].ToString());
+                nTtPrd.nttAcidente += Int32.Parse(item[7].ToString());
+                nTtPrd.nttTotal += Int32.Parse(item[8].ToString());
+            }
+
             ntotal.nttAdvert += Int32.Parse(item[1].ToString());
             ntotal.nttSusp += Int32.Parse(item[2].ToString());
             ntotal.nttAtest += Int32.Parse(item[3].ToString());
@@ -113,11 +128,9 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return usName.Replace(@"ECOURBIS\", "").ToLower();
         }
 
-        public static string setTitulo(bool isfuncAtivos)
-        {
+        public static string setTitulo(bool isfuncAtivos) {
             html = new StringBuilder();
-            if (isfuncAtivos)
-            {
+            if (isfuncAtivos) {
                 html.Append("       <div class='container'>");
                 html.Append("           <div class='col-sm-4'>");
                 html.Append("               <h3>FUNCIONÁRIOS ATIVOS</h3>");
@@ -125,9 +138,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
                 html.Append("           <div class='col-sm-3 col-sm-offset-5'>");
                 html.Append("               <h3 class='text-right'> <input type=\"button\" onclick=\"tableToExcel('tableToExcelA', 'Funciários Ativos')\" value=\"Export to excel funcionários ativos\" class=\"btn btn-link\" /></h3>");
                 html.Append("           </div>");
-            }
-            else
-            {
+            } else {
                 html.Append("       <div class='container'>");
                 html.Append("           <div class='col-sm-4'>");
                 html.Append("               <h3>FUNCIONÁRIOS DEMITIDOS</h3>");
@@ -143,8 +154,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// Captura o ip da maquina do usuário corrente
         /// </summary>
         /// <returns></returns>
-        public static string GetIp()
-        {
+        public static string GetIp() {
             string Host = Dns.GetHostName();
             IPAddress[] ip = Dns.GetHostAddresses(Host);
 
@@ -156,14 +166,12 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string setDatePrd(string data)
-        {
+        public static string setDatePrd(string data) {
             return (data.Substring(4, 2) + "/" + data.Substring(0, 4));
         }
 
         /**Dados Funcionário**/
-        public static string setHeaderDdFunce()
-        {
+        public static string setHeaderDdFunce() {
             html = new StringBuilder();
 
             html.Append("           <table class='table table-responsive' style='width:100%;'>\n");
@@ -178,8 +186,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return html.ToString();
         }
 
-        public static string setDadosDdFunce(DataRowView item)
-        {
+        public static string setDadosDdFunce(DataRowView item) {
             html = new StringBuilder();
             html.Append("                <tr>\n");
             html.Append("                   <td class='table_filha_item'>" + item[0] + "</td>\n");
@@ -189,8 +196,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                   <td class='table_filha_item'>" + item[4] + "</td>\n");
             html.Append("                </tr>\n");
 
-            if (!"".Equals(item[5].ToString().Trim()))
-            {
+            if (!"".Equals(item[5].ToString().Trim())) {
                 html.Append("                <tr>\n");
                 html.Append("                   <td class='table_filha_item'>MOTIV. DEMISS.</td>\n");
                 html.Append("                   <td class='table_filha_item' colspan='4'>" + item[5] + "</td>\n");
@@ -201,8 +207,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         }
 
 
-        public static string setFooterDdFunce()
-        {
+        public static string setFooterDdFunce() {
             html = new StringBuilder();
 
             html.Append("           </table>\n");
@@ -212,8 +217,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         }
 
         /**Detalhes Funcionário**/
-        public static string setHeaderDetFunce()
-        {
+        public static string setHeaderDetFunce() {
             html = new StringBuilder();
 
             html.Append("           <table class='table table-responsive' style='width:100%;'>\n");
@@ -232,10 +236,19 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return html.ToString();
         }
 
-        public static string setDadosDetFunce(DataRowView item)
-        {
+        public static string setDadosDetFunce(DataRowView item, string pd, string pa) {
+            string style = "";
+            string prd = item[0].ToString().Substring(3, 4) + item[0].ToString().Substring(0, 2);
+            int nPrd = int.Parse(prd);
+            int nPd = int.Parse(pd);
+            int nPa = int.Parse(pa);
+
+            if (nPrd >= nPd && nPrd <= nPa) {
+                style = " style='background-color: #F0FFF0;'";
+            }
+
             html = new StringBuilder();
-            html.Append("                <tr>\n");
+            html.Append("                <tr" + style + ">\n");
             html.Append("                   <td class='table_filha_item'>" + item[0] + "</td>\n");
             html.Append("                   <td class='table_filha_item text-right'>" + item[1] + "</td>\n");
             html.Append("                   <td class='table_filha_item text-right'>" + item[2] + "</td>\n");
@@ -250,10 +263,21 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return html.ToString();
         }
 
-        public static string setTotalizadorInTable(Totalizador nTotalizador)
-        {
+        public static string setTotalizadorInTable(Totalizador nTotalizador, Totalizador nTtPrd) {
             html = new StringBuilder();
-            html.Append("                <tr>\n");
+            html.Append("                <tr style='background-color: #8FBC8F;'>\n");
+            html.Append("                   <th class='table_filha_item'>Pontuação do Período</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttAdvert + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttSusp + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttAtest + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttFalta + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttReem + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttMultas + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttAcidente + "</th>\n");
+            html.Append("                   <th class='table_filha_item text-right'>" + nTtPrd.nttTotal + "</th>\n");
+            html.Append("                </tr>\n");
+
+            html.Append("                <tr style='background-color: #2E8B57;'>\n");
             html.Append("                   <th class='table_filha_item'>Pontuação Total</th>\n");
             html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttAdvert + "</th>\n");
             html.Append("                   <th class='table_filha_item text-right'>" + nTotalizador.nttSusp + "</th>\n");
@@ -268,8 +292,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return html.ToString();
         }
 
-        public static string setFooterDetFunce()
-        {
+        public static string setFooterDetFunce() {
             html = new StringBuilder();
 
             html.Append("           </table>\n");
@@ -282,20 +305,19 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// Method responsável por seta o inicio da tabela sintetica
         /// </summary>
         /// <returns></returns>
-        public static string setHeaderTable(string numNo)
-        {
+        public static string setHeaderTable(string numNo) {
             html = new StringBuilder();
-
-            //html.Append("               <h3 class='text-right'> <input type=\"button\" onclick=\"tableToExcel('tableToExcelUnidade', 'Funciários Ativos')\" value=\"Export to excel unidade\" class=\"btn btn-link\" /></h3>\n");
 
             html.Append("           <table id='tableToExcelUnidade' class='table table-responsive tree' style='width:100%;'>\n");
             html.Append("                    <tr class='treegrid-" + numNo + "'>\n");
-            html.Append("                        <td><b>DESCRIÇÃO</b></td>\n");
+            html.Append("                        <td><b>DESCRI&Ccedil;&Atilde;O</b></td>\n");
             html.Append("                        <td class='text-right'><b>ADVERTENCIA</b></td>\n");
             html.Append("                        <td class='text-right'><b>SUSPENSÃO</b></td>\n");
             html.Append("                        <td class='text-right'><b>ATESTADO</b></td>\n");
             html.Append("                        <td class='text-right'><b>FALTA</b></td>\n");
             html.Append("                        <td class='text-right'><b>REEMBOLSO</b></td>\n");
+            html.Append("                        <td class='text-right'><b>MULTA</b></td>\n");
+            html.Append("                        <td class='text-right'><b>ACIDENTE</b></td>\n");
             html.Append("                        <td class='text-right'><b>TOTAL</b></td>\n");
             html.Append("                    </tr>\n");
 
@@ -306,8 +328,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// Method responsável por fecha a tabela sintetica de exibição na tela do usuário.
         /// </summary>
         /// <returns></returns>
-        public static string setEndTable()
-        {
+        public static string setEndTable() {
             html = new StringBuilder();
 
             /*html.Append("               <tfoot>\n");
@@ -331,8 +352,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// </summary>
         /// <param name="ub3a"></param>
         /// <returns></returns>
-        public static string setDadosTableStc(Ub3Sintetico ub3s, string numNo)
-        {
+        public static string setDadosTableStc(Ub3Sintetico ub3s, string numNo) {
             html = new StringBuilder();
 
             html.Append("                  <tr class='treegrid-" + numNo + "'>\n");
@@ -342,6 +362,8 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                        <td class='text-right'>" + ub3s.UB3_ATMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3s.UB3_FALMES + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3s.UB3_REEMES + "</td>\n");
+            html.Append("                        <td class='text-right'>" + ub3s.UB3_MULTAS + "</td>\n");
+            html.Append("                        <td class='text-right'>" + ub3s.UB3_ACID + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3s.UB3_TOTAL + "</td>\n");
             html.Append("                    </tr>\n");
 
@@ -353,16 +375,16 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// Method responsável por set cabeçalho da tabela analitica, por grupo.
         /// </summary>
         /// <returns></returns>
-        public static string setHeaderTableAnalitico(string numNoPai, string numNoFilho)
-        {
+        public static string setHeaderTableAnalitico(string numNoPai, string numNoFilho) {
             html = new StringBuilder();
 
-            html.Append("           <tr class='treegrid-" + numNoFilho + " treegrid-parent-" + numNoPai + "'><td colspan='9'> <table class='table table-responsive tablefilter display' style='width:100%;'>\n");
+            html.Append("           <tr class='treegrid-" + numNoFilho + " treegrid-parent-" + numNoPai + "'><td colspan='9'>\n");
+            html.Append("               <table class='table table-responsive tablefilter display' id='tbl-child-unit' style='width:100%;'>\n");
             html.Append("                 <thead>");
             html.Append("                    <tr class='table_filha_cabecalho'>\n");
             html.Append("                        <th>CC</th>\n");
             html.Append("                        <th>DESC.</th>\n");
-            html.Append("                        <th>MATRIC.</th>\n");
+            html.Append("                        <th style='width:20%;'>MATRIC.</th>\n");
             html.Append("                        <th>DT DEMIS.</th>\n");
             html.Append("                        <th>ADVERT.</th>\n");
             html.Append("                        <th>SUSP.</th>\n");
@@ -383,8 +405,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// Method responsável por fecha a tabela analitica de exibição na tela do usuário.
         /// </summary>
         /// <returns></returns>
-        public static string setEndTableAnalitico()
-        {
+        public static string setEndTableAnalitico() {
             html = new StringBuilder();
 
             /*html.Append("               <tfoot>\n");
@@ -414,8 +435,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
         /// </summary>
         /// <param name="ub3a"></param>
         /// <returns></returns>
-        public static string setDadosTableAnlt(Ub3Analitico ub3a)
-        {
+        public static string setDadosTableAnlt(Ub3Analitico ub3a, string prdDe, string prdAte, bool isAtvo) {
             html = new StringBuilder();
 
             html.Append("                  <tr class='table_filha_item'>\n");
@@ -431,15 +451,19 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             html.Append("                        <td class='text-right'>" + ub3a.UB3_MULTAS + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_ACID + "</td>\n");
             html.Append("                        <td class='text-right'>" + ub3a.UB3_TOTAL + "</td>\n");
-            html.Append("                        <td class='text-right'><a href='DetalhesFunce.aspx?mat=" + ub3a.UB3_MAT.Substring(0, 6) + "' class='btn btn-link  link-painel' target='_blank'><img src='img/print.png' style='width:15px; height:15px;'/></a></td>\n");
+            html.Append("                        <td class='text-right'>\n");
+            html.Append("                           <a href='DetalhesFunce.aspx?mat=" + ub3a.UB3_MAT.Substring(0, 6) +
+                                                        "&pd=" + prdDe +
+                                                        "&pa=" + prdAte + 
+                                                        "&atv=" + isAtvo.ToString() + "'" +
+                                                        " class='btn btn-link  link-painel' target='_blank'><img src='img/print.png' style='width:15px; height:15px;'/></a></td>\n");
             html.Append("                    </tr>\n");
 
             return html.ToString();
         }
 
         //primeiro relatório 
-        public static string setHeadeDadosPRDClose(List<string> anomes, string id)
-        {
+        public static string setHeadeDadosPRDClose(List<string> anomes, string id) {
             html = new StringBuilder();
             html.Append("            <table id='" + id + "' class='table table-responsive config-table'>\n");
             html.Append("                <tr>\n");
@@ -462,8 +486,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return html.ToString();
         }
 
-        public static string setFootDadosPRDClose(List<string> anomes)
-        {
+        public static string setFootDadosPRDClose(List<string> anomes) {
             html = new StringBuilder();
             /* html.Append("               <tfoot>\n");
              html.Append("                   <tr>\n");
@@ -492,8 +515,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application
             return html.ToString();
         }
 
-        public static string setItensPRDClose(DataRowView item, List<string> anomes, bool isAtivo)
-        {
+        public static string setItensPRDClose(DataRowView item, List<string> anomes, bool isAtivo) {
             html = new StringBuilder();
 
             html.Append("                   <tr>\n");
