@@ -22,6 +22,24 @@ namespace Ecourbis.PontuacaoFuncionario.Web {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// _pd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _pd;
+        
+        /// <summary>
+        /// _pa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _pa;
+        
+        /// <summary>
         /// relatorio control.
         /// </summary>
         /// <remarks>

@@ -11,6 +11,34 @@
 })();
 
 
+/* *
+ * Examplo:
+ *  http://fancybox.net/howto
+ *  http://fancybox.net/api
+ *  http://fancybox.net/
+ * */
+$("#legenda").fancybox({
+    'width': '650px',
+    'height': '450px',
+    'padding': 0,
+    'autoScale': false,
+    'transitionIn': 'none',
+    'transitionOut': 'none',
+    'type': 'iframe'
+});
+
+
+$(".item-fancybox").fancybox({
+    'width': '90%',
+    'height': '90%',
+    'padding': 0,
+    'autoScale': false,
+    'transitionIn': 'none',
+    'transitionOut': 'none',
+    'type': 'iframe'
+});
+
+
 //Padrão de data, utilizado para configurar o modelo e a lingua desejada.
 $(function () {
     //$('.datetimepicker').datetimepicker({

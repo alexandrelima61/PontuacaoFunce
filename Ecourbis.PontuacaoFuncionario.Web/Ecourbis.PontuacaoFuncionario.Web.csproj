@@ -145,6 +145,7 @@
     <Content Include="js\jquery-1.9.1.min.js" />
     <Content Include="relPontuacao.aspx" />
     <Content Include="relPontuacaoFunc.aspx" />
+    <Content Include="view\fragment\legenda.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

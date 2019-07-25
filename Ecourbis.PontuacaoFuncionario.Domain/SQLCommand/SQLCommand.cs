@@ -22,6 +22,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand {
 
             sb.Append("AND UB3_DTARQ BETWEEN '" + prdDe + "' AND '" + prdAte + "'\n");
             sb.Append("AND UA1.UA1_GRUPO = '" + grupo + "'\n");
+            sb.Append("AND NOT SRA.RA_RESCRAI = '31'\n");
             sb.Append("GROUP BY UA1.UA1_GRUPO, UA1.UA1_DESCRI\n");
             sb.Append("ORDER BY UA1.UA1_GRUPO, UA1.UA1_DESCRI, UB3_TOTAL\n");
 
@@ -49,8 +50,9 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand {
             sb.Append("	AND UB3_SITFOL " + sinal + " 'D'\n");
 
             sb.Append("AND UB3_DTARQ BETWEEN '" + prdDe + "' AND '" + prdAte + "'\n/* AND UB3.UB3_MAT = '009291'\n*/");
+            sb.Append("AND NOT SRA.RA_RESCRAI = '31'\n");
             sb.Append("GROUP BY UA1.UA1_DESCRI, SRA.RA_CC, CTT.CTT_DESC01, UB3.UB3_MAT, SRA.RA_NOME,UB3_DEMIS\n");
-            sb.Append("HAVING SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3.UB3_MULTAS+UB3.UB3_ACID) <> 0");
+            sb.Append("HAVING SUM(UB3_ADVMES+UB3_SUSMES+UB3_ATMES+UB3_FALMES+UB3_REEMES+UB3.UB3_MULTAS+UB3.UB3_ACID) <> 0\n");
             sb.Append("ORDER BY UB3_MAT");
 
             return sb.ToString();
@@ -98,6 +100,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand {
                 sb.Append(" AND UA1_GRUPO IN (" + grupo + ")\n");
 
             sb.Append("	AND UB3_DTARQ BETWEEN '" + anomes[0] + "' AND '" + anomes[11] + "'\n");
+            sb.Append(" AND NOT SRA.RA_RESCRAI = '31'\n");
             sb.Append("	GROUP BY UA1.UA1_GRUPO, UA1.UA1_DESCRI, UB3.UB3_DTARQ\n");
             sb.Append(") AS QD1\n");
             sb.Append("GROUP BY UA1_GRUPO, UA1_DESCRI \n");
@@ -118,6 +121,7 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand {
             sb.Append("     dbo.fnc_JustDemiss('" + matricula + "') AS JUSTDEMISSAO\n");
             sb.Append("FROM SRA010\n");
             sb.Append("WHERE RA_MAT = '" + matricula + "'\n");
+            sb.Append("AND NOT RA_RESCRAI = '31'\n");
             sb.Append("AND D_E_L_E_T_ = ' '\n");
 
             return sb.ToString();
@@ -136,12 +140,14 @@ namespace Ecourbis.PontuacaoFuncionario.Domain.SQLCommand {
             sb.Append("    UB3_MULTAS,\n");
             sb.Append("    UB3_ACID,\n");
             sb.Append("    (UB3_ADVMES + UB3_SUSMES + UB3_ATMES + UB3_FALMES + UB3_REEMES + UB3_MULTAS + UB3_ACID) AS UB3_TOTAL\n");
-            sb.Append("FROM UB3010\n");
+            sb.Append("FROM UB3010 UB3\n");
+            sb.Append("     INNER JOIN SRA010 SRA ON UB3.UB3_MAT = SRA.RA_MAT AND SRA.D_E_L_E_T_ = ''\n");
             sb.Append("WHERE UB3_FILIAL = '  '\n");
             sb.Append("AND UB3_MAT = '" + matricula + "'\n");
             sb.Append("AND UB3_SITFOL " + sinal + " 'D'\n");
-            sb.Append("AND D_E_L_E_T_ = ' '\n");
-            sb.Append("AND (UB3_ADVMES + UB3_SUSMES + UB3_ATMES + UB3_FALMES + UB3_REEMES + UB3_MULTAS + UB3_ACID) > 0\n");
+            sb.Append("AND UB3.D_E_L_E_T_ = ' '\n");
+            sb.Append("AND NOT SRA.RA_RESCRAI = '31'\n");
+            sb.Append("AND (UB3_ADVMES + UB3_SUSMES + UB3_ATMES + UB3_FALMES + UB3_REEMES + UB3_MULTAS + UB3_ACID) <> 0\n");
 
             return sb.ToString();
         }

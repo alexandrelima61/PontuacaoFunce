@@ -244,7 +244,7 @@ namespace Ecourbis.PontuacaoFuncionario.Application {
             int nPa = int.Parse(pa);
 
             if (nPrd >= nPd && nPrd <= nPa) {
-                style = " style='background-color: #F0FFF0;'";
+                style = " style='background-color: #c7f9cc;'";
             }
 
             html = new StringBuilder();
@@ -521,19 +521,19 @@ namespace Ecourbis.PontuacaoFuncionario.Application {
             html.Append("                   <tr>\n");
             html.Append("                       <td>" + item[0] + "</td>\n");
             html.Append("                       <td>" + item[1] + "</td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[0] + "&pa=" + anomes[0] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[2] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[1] + "&pa=" + anomes[1] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[3] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[2] + "&pa=" + anomes[2] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[4] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[3] + "&pa=" + anomes[3] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox ' data-fancybox-type='iframe'>" + item[5] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[4] + "&pa=" + anomes[4] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[6] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[5] + "&pa=" + anomes[5] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[7] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[6] + "&pa=" + anomes[6] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[8] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[7] + "&pa=" + anomes[7] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[9] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[8] + "&pa=" + anomes[8] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[10] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[9] + "&pa=" + anomes[9] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox' data-fancybox-type='iframe'>" + item[11] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[10] + "&pa=" + anomes[10] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[12] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[11] + "&pa=" + anomes[11] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[13] + "</a></td>\n");
-            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[0] + "&pa=" + anomes[11] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link fancybox fancybox.iframe' data-fancybox-type='iframe'>" + item[14] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[0] + "&pa=" + anomes[0] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[2] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[1] + "&pa=" + anomes[1] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[3] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[2] + "&pa=" + anomes[2] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[4] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[3] + "&pa=" + anomes[3] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[5] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[4] + "&pa=" + anomes[4] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[6] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[5] + "&pa=" + anomes[5] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[7] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[6] + "&pa=" + anomes[6] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[8] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[7] + "&pa=" + anomes[7] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[9] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[8] + "&pa=" + anomes[8] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[10] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[9] + "&pa=" + anomes[9] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[11] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[10] + "&pa=" + anomes[10] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[12] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[11] + "&pa=" + anomes[11] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[13] + "</a></td>\n");
+            html.Append("                       <td class='text-right'><a href='relPontuacaoFunc.aspx?pd=" + anomes[0] + "&pa=" + anomes[11] + "&g=" + item[0] + "&atv=" + isAtivo + "' class='alert-link item-fancybox'>" + item[14] + "</a></td>\n");
             html.Append("                   </tr>\n");
 
             return html.ToString();

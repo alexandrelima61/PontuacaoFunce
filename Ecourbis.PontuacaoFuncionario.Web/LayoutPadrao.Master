@@ -22,14 +22,14 @@
     <link href="css/jquery.treegrid.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/jquery.fancybox.css" rel="stylesheet" />
-    <link href="Config/DataTables/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <%--<link href="Config/DataTables/media/css/jquery.dataTables.css" rel="stylesheet" />--%>
 
     <%--js--%>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.fancybox.js"></script>
-    <script src="js/jquery.treegrid.min.js"></script>
-    <script src="Config/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <%--<script src="js/jquery.treegrid.min.js"></script>--%>
+    <%--<script src="Config/DataTables/media/js/jquery.dataTables.min.js"></script>--%>
     <script src="js/myFunctions.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">

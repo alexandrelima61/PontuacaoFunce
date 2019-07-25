@@ -14,8 +14,9 @@
     <%--css--%>
     <link href="css/config.page.css" rel="stylesheet" />
     <link href="css/jquery.treegrid.css" rel="stylesheet" />
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="Config/DataTables/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
 
     <%--js--%>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -24,7 +25,9 @@
     <script src="js/jquery.treegrid.min.js"></script>
     <script src="Config/Libs/moment-with-locales.js"></script>
     <script src="Config/datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="Config/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script src="js/myFunctions.js"></script>
 
 </head>
@@ -63,6 +66,19 @@
             var htmltable = document.getElementById('tableToExcelUnidade');
             var html = htmltable.outerHTML;
             window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+        });
+
+        /*
+         * https://datatables.net/plug-ins/i18n/
+         */
+        $(document).ready(function () {
+            $('#tbl-child-unit').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+                },
+                "order": [[11, "desc"]],
+                "lengthMenu": [[ 25, 50, 100, -1], [ 25, 50, 100, "Todos"]]
+            });
         });
 
     </script>

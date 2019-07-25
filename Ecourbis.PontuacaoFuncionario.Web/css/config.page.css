@@ -104,3 +104,12 @@
 .tabela-resultado {
     margin: 15px !important;
 }
+
+.txt-size-titulo {
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+.txt-size-conteudo {
+    font-size: 11px !important;
+}

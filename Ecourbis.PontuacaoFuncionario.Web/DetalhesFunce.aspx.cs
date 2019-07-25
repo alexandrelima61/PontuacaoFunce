@@ -21,6 +21,10 @@ namespace Ecourbis.PontuacaoFuncionario.Web {
                 mat = Request.QueryString["mat"];
                 pd = Request.QueryString["pd"];
                 pa = Request.QueryString["pa"];
+
+                if (string.IsNullOrEmpty(Request.QueryString["vld"]))
+                    validaPeriodo();
+
                 isAtivo = Boolean.Parse(Request.QueryString["atv"]);
                 setDetalhesFunce();
             }
@@ -29,6 +33,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web {
         }
 
         private void setDetalhesFunce() {
+            setPeriodoLable();
             relatorio.InnerHtml = string.Empty;
             Totalizador nTtPrd = new Totalizador();
             Totalizador nTotal = new Totalizador();
@@ -57,6 +62,20 @@ namespace Ecourbis.PontuacaoFuncionario.Web {
             }
 
             relatorio.InnerHtml += html;
+        }
+
+        private void setPeriodoLable() {
+            _pd.Text = pd.Substring(4, 2) + "/" + pd.Substring(0, 4);
+            _pa.Text = pa.Substring(4, 2) + "/" + pa.Substring(0, 4);
+        }
+
+        private void validaPeriodo() {
+            if (pd != pa) {
+                var atv = Request.QueryString["atv"].ToString();
+                pd = (int.Parse(pd.Substring(0, 4)) - 1).ToString() + pd.Substring(4, 2);
+
+                Response.Redirect("/DetalhesFunce.aspx?mat=" + mat + "&pd=" + pd + "&pa=" + pa + "&atv=" + atv + "&vld=True");
+            }
         }
     }
 }

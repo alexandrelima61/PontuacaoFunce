@@ -16,7 +16,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web {
 
         protected void Page_Load(object sender, EventArgs e) {
             __User = Utilitario.GetUser();
-            __User = __User.Equals("") ? "jalima" : __User;
+            //__User = __User.Equals("") ? "jalima" : __User;
             //isAuthorizer = Utilitario.GetAuthorize(__User);
             //btnGrRel.Enabled = "OK".Equals(isAuthorizer[1]);
             loadingUser = LoadingUser.GetNewInstance();

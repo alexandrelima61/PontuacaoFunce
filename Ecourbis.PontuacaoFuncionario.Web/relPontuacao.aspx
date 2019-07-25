@@ -10,7 +10,13 @@
                     <div class="col-sm-10">
                         <strong class="panel-title titulo-painel">Relatório de Pontuação Funcionário</strong>
                     </div>
-                    <div class="col-sm-2 text-right">
+                    <div class="col-sm-1 text-right">
+                        <a id="legenda" class='btn btn-link link' 
+                            href="view/fragment/legenda.html">
+                            Legenda
+                        </a>
+                    </div>
+                    <div class="col-sm-1 text-right">
                         <asp:Button Text="Atualizar Dados" runat="server" ID="btnGrRel"
                             OnClick="btnGrRel_Click" CssClass="btn btn-link link" />
                     </div>
