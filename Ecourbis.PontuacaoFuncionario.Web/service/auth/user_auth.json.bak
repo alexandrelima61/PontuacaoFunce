@@ -11,7 +11,7 @@
     "user": "rsnascimento",
     "nome": "ROBERTO SILVA DO NASCIMENTO",
     "auths": {
-      "auth": "'02'",
+      "auth": "'001'",
       "status": "OK"
     }
   },
@@ -123,7 +123,7 @@
     "user": "aseriguti",
     "nome": "ALVARO MITSUO SERIGUTI",
     "auths": {
-      "auth": "'03'",
+      "auth": "'007','008','010'",
       "status": "OK"
     }
   },
@@ -131,7 +131,7 @@
     "user": "olopes",
     "nome": "OLSEN LOPES JUNIOR",
     "auths": {
-      "auth": "'01'",
+      "auth": "'002'",
       "status": "OK"
     }
   },
@@ -139,7 +139,7 @@
     "user": "hlima",
     "nome": "HELENILDO RODRIGUES DE LIMA",
     "auths": {
-      "auth": "'01'",
+      "auth": "'002'",
       "status": "OK"
     }
   },
@@ -147,7 +147,7 @@
     "user": "jdias",
     "nome": "JOAO BITTENCOURT DIAS",
     "auths": {
-      "auth": "'01'",
+      "auth": "'002'",
       "status": "OK"
     }
   },
@@ -155,7 +155,7 @@
     "user": "vchaves",
     "nome": "VALDIR PEREIRA CHAVES",
     "auths": {
-      "auth": "'01','04'",
+      "auth": "'002','013'",
       "status": "OK"
     }
   },
@@ -163,7 +163,7 @@
     "user": "jfoliveira",
     "nome": "JORCIVAL FERNANDES DE OLIVEURA JUNIOR",
     "auths": {
-      "auth": "'01'",
+      "auth": "'002'",
       "status": "OK"
     }
   },
@@ -171,7 +171,7 @@
     "user": "erodrigues",
     "nome": "EDINEI RODRIGUES",
     "auths": {
-      "auth": "'02'",
+      "auth": "'001'",
       "status": "NOTOK"
     }
   },
@@ -179,7 +179,7 @@
     "user": "caguiar",
     "nome": "CARLOS EMIDIO R DE AGUIAR",
     "auths": {
-      "auth": "'02'",
+      "auth": "'001'",
       "status": "OK"
     }
   },
@@ -187,7 +187,7 @@
     "user": "csilva",
     "nome": "CLEDSON VALMIR DA SILVA",
     "auths": {
-      "auth": "'02'",
+      "auth": "'001'",
       "status": "OK"
     }
   },
@@ -195,7 +195,7 @@
     "user": "rperes",
     "nome": "ROBSON PONCE PERES",
     "auths": {
-      "auth": "'02'",
+      "auth": "'001'",
       "status": "OK"
     }
   },
@@ -211,7 +211,7 @@
     "user": "pcosta",
     "nome": "PAULO ROGÉRIO GOMES DA COSTA",
     "auths": {
-      "auth": "'02'",
+      "auth": "'001'",
       "status": "OK"
     }
   }
