@@ -200,6 +200,14 @@
     }
   },
   {
+    "user": "rgimenez",
+    "nome": "ROBINSON DA SILVA GIMENEZ",
+    "auths": {
+      "auth": "'02'",
+      "status": "OK"
+    }
+  },
+  {
     "user": "mbalsani",
     "nome": "MARCELO BALSANI",
     "auths": {
@@ -212,6 +220,30 @@
     "nome": "PAULO ROGÉRIO GOMES DA COSTA",
     "auths": {
       "auth": "'02'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "dmelo",
+    "nome": "DIELLE DE ARAÚJO MELO",
+    "auths": {
+      "auth": "'02'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "ncarlo",
+    "nome": "NATALIA GUTIERRES DE CARLO",
+    "auths": {
+      "auth": "'02'",
+      "status": "OK"
+    }
+  },
+  {
+    "user": "lcampos",
+    "nome": "LUCAS RAMOS CAMPOS",
+    "auths": {
+      "auth": "'01'",
       "status": "OK"
     }
   }

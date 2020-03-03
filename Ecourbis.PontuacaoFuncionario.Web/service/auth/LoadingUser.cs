@@ -44,7 +44,7 @@ namespace Ecourbis.PontuacaoFuncionario.Web.service.auth {
         }
 
         public UserAuth FindUserAuthByFileJson(string login) {
-            UserAuth us = new UserAuth();
+            UserAuth us = null;
             var users = JsonConvert.DeserializeObject<List<UserAuth>>(GetJson());
 
             foreach (var user in users) {
